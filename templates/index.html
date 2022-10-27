@@ -1,0 +1,127 @@
+{% extends 'base.html' %} {% block content %}
+ 
+<link
+rel="stylesheet"
+href="{{ url_for('static', filename= 'css/blog.css') }}"
+/>
+
+ <br>
+ {% if not posts%}
+    <div class="vide">Pas de posts pour l'instant...<br>
+    Allez vite en créer un: <br>
+        <a href="/write_blog" class="createBtn">C'est ici</a>
+</div>
+ {% endif %}
+
+ {% set i = -1 %}
+ {% for post in posts %}
+ {% set i = i+1 %}
+ {% set ns = namespace(followed=False) %}
+ 
+ {% for f in post.types.split(' ')%}
+ 
+ {% if f in current_user.follow.split(' ') %}
+ 
+ {% set ns.followed = True %}
+ 
+ {% endif %}
+ 
+ {% endfor %}
+
+{% if post.title  %}
+<div>
+    {% if not ns.followed %}
+    <details id="{{post.id}}-blog">
+{% endif %}
+{% if ns.followed %}
+    <details class="followed" id="{{post.id}}-blog">
+{% endif %}
+        <summary>
+            {{post.title}}
+
+        </summary>
+        <p class="little">{{post.types}}</p>
+
+        <hr>
+
+<p class="little">
+{%for line in post.content.split('\n')%}
+{{line}}
+<br>
+{% endfor %}
+</p>
+<br>
+{% set images = post['images'].split(' ') %}
+    {% for image in images %}
+        {% if image[-3:] == "jpg" or image[-3:] == "png" or image[-3:] == "jfif" or image[-4:] == "jpeg" %}
+          <img class="blog_image" src={{ image }}><br><br>
+        {% endif %}
+          
+    {% endfor %}
+<p class="little"><a href="/{{post.author_id}}/userInfos" class="linkedName">{{post.author_name}}</a> - {{post.created}}</p>
+{% if post.author_id == current_user.id or current_user.admin == 1 %}
+<hr>
+<form method="POST" action="{{ url_for('delete_blog', id=post['id']) }}" >
+    <input type="submit" value="Supprimer" id="deleteBlog"
+          onclick="return confirm('Voulez-vous vraiment supprimer ce blog?')">
+     </form>
+{% endif %}
+    </details>
+
+
+</div>
+{% endif %}
+
+
+{% if not post.title  %}
+
+{% if post.images %}
+{% if not ns.followed %}
+<div id="{{post.id}}-blog" class="blog_unique_image">
+{% endif %}
+{% if ns.followed %}
+<div class="followed-img" id="{{post.id}}-blog">
+{% endif %}
+{% set images = post['images'].split(' ') %}
+    {% for image in images %}
+        {% if image[-3:] == "jpg" or image[-3:] == "png" or image[-3:] == "jfif" or image[-4:] == "jpeg" %}
+          <img src={{ image }}><br><br>
+        {% endif %}
+          
+    {% endfor %}
+<p class="little"><a href="/{{post.author_id}}/userInfos" class="linkedName">{{post.author_name}}</a> - {{post.created}}</p>
+{% if post.author_id == current_user.id %}
+<hr>
+<form method="POST" action="{{ url_for('delete_blog', id=post['id']) }}" >
+    <input type="submit" value="Supprimer" id="deleteBlog"
+          onclick="return confirm('Voulez-vous vraiment supprimer ce blog?')">
+     </form>
+{% endif %}
+
+    </div>
+{% endif %}
+{% endif %}
+
+{% if post.link %}
+{% if not ns.followed %}
+<div id="{{post.id}}-blog" class="blog_unique_image">
+{% endif %}
+{% if ns.followed %}
+<div class="followed-video" id="{{post.id}}-video">
+{% endif %}
+<iframe src="{{ post.link }}">
+</iframe>
+<p class="little"><a href="/{{post.author_id}}/userInfos" class="linkedName">{{post.author_name}}</a> - {{post.created}}</p>
+{% if post.author_id == current_user.id %}
+<hr>
+<form method="POST" action="{{ url_for('delete_blog', id=post['id']) }}" >
+    <input type="submit" value="Supprimer" id="deleteBlog"
+          onclick="return confirm('Voulez-vous vraiment supprimer ce blog?')">
+</form>
+{% endif %}
+ {% endif %}
+</div>
+
+{% endfor %}
+<script src="static/js/openBlog.js"></script>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends 'msg.html' %}
+{% block content %}
+<link
+rel="stylesheet"
+href="{{ url_for('static', filename= 'css/messages.css') }}"
+/>
+
+    <div class="messageBox">
+        
+        <ul class="ancientMessages" id="hide">
+            
+            {% for message in messages %}
+            <div class="hide3">
+            {% if message.author_id == current_user.id %}
+            
+            <li class="sended_msg">
+            {% endif %}
+
+            {% if message.author_id != current_user.id %}
+            <li class="received_msg">
+            {% endif %}
+            <p class="searched">
+            {{message.content}}
+            </p>
+            </li>
+            </div>
+            {%endfor%}
+
+        </ul>
+        <p id="hide2">
+            Aucun message trouvé...
+        </p>
+        <br>
+    </div>
+    <br />
+    <br>
+
+    <script src="{{url_for('static', filename='js/endPage.js')}}"></script>
+    <script src="{{url_for('static', filename='js/searchMsg.js')}}"></script>
+    <script src="{{url_for('static', filename='js/reload.js')}}"></script>
+
+
+    
+{% endblock %}

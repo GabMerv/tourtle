@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block content %}
+<link
+rel="stylesheet"
+href="{{ url_for('static', filename= 'css/dst.css') }}"
+/>
+      <p class="center">
+        {% for post in posts %}
+        <details class="center" id="{{post.id}}-dst">
+          <summary>
+            {{ post['title'] }}<br>
+            <br>
+          </summary>
+          {% set images = post['images'].split(' ') %}
+          {% for image in images %}
+          {% if image[-3:] == "jpg" or image[-3:] == "png" or image[-3:] == "jfif" or image[-4:] == "jpeg" %}
+          <img class="dst_image" src={{ image }}><br><br>
+          {% endif %}
+
+          {% if image[-4:] == "docx" or image[-3:] == "doc" %}
+          <p>{{image[14:]}}</p>
+          {% endif %}
+
+          {% if image[-3:] == "pdf"%}
+          <embed src={{ image }} type="application/pdf"/>
+          {% endif %}
+          <form>
+          <a class="dwn" onClick="window.open('{{image}}');">Télécharger</a>
+          </form>
+
+          
+          {% endfor %}
+          <hr>
+          <form method="POST" action="{{ url_for('delete', id=post['id']) }}" >
+          <input type="submit" value="Supprimer"
+                onclick="return confirm('Voulez-vous vraiment supprimer ce DST?')">
+           </form>
+        </details>
+        {% endfor %}
+      </p>
+      <p class="center">
+      <a href="/add_dst" class="center" id="addDst">Ajouter un DST</a>
+    </p>
+    <script src="static/js/openDst.js"></script>
+{% endblock %}

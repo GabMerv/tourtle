@@ -1,0 +1,44 @@
+form {
+    padding: 10px;
+    margin: auto;
+    max-width: 700px;
+    color: black;
+    text-align: center;
+    border-radius: 10px;
+
+  background: #e0e0e0;
+    box-shadow:  20px 20px 60px #bebebe,
+                 -20px -20px 60px #ffffff;
+}
+form input {
+    text-decoration: none;
+    border: none;
+}
+
+form p {
+    font-size: large;
+}
+
+input {
+    margin:10px;
+    border:none;
+    text-decoration: none;
+    border-radius: 10px;
+    color: black;
+    background: #ededed;
+    box-shadow:  20px 20px 60px #c9c9c9,
+                 -20px -20px 60px #ffffff;
+}
+
+.submit_btn {
+    color: black;
+    font-size: 15px;
+    text-decoration: none;
+    padding: 10px;
+    border:none;
+    outline: none;
+    background: none;
+    cursor: pointer;
+    text-align: center;
+  }
+

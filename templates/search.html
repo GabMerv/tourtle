@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<link
+rel="stylesheet"
+href="{{ url_for('static', filename= 'css/search.css') }}"
+/>
+
+<div class="searchBox">
+<input id="searchbar" onkeyup="search()" type="text"
+name="search" placeholder="Rechercher un élément..">
+<br>
+
+<ul id="hide">
+{% for user in users %}
+<li class="searched"> <a href="/{{user.id}}/userInfos">@{{user.username}}</a> </li>
+{% endfor %}
+<br>
+
+{% for blog in blogs %}
+{% if blog.title %}
+<li class="searched"><a href="/#{{blog.id}}-blog">{{blog.title}}</a></li>
+{% endif %}
+{% endfor %}
+<br>
+
+{% for event in events %}
+<li class="searched"><a href="/calendar#{{event.id}}-event">{{event.title}}</a></li>
+{% endfor %}
+<br>
+
+{% for dst in dsts %}
+<li class="searched"><a href="/dst#{{dst.id}}-dst">{{dst.title}}</a></li>
+{% endfor %}
+</ul>
+<br>
+
+</div>
+<script src="static/js/search.js"></script>
+
+{% endblock %}

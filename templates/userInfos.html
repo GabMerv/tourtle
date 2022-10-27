@@ -1,0 +1,87 @@
+{% extends 'base.html' %} {% block content %}
+<link
+rel="stylesheet"
+href="{{ url_for('static', filename= 'css/user.css') }}"
+/>
+
+
+<div id="infoChart">
+
+
+{% if user.pp %}
+<img src="/{{user.pp}}" alt="Avatar" class="avatar">
+{% endif %}
+{% if not user.pp %}
+<img src="{{ url_for('static', filename='icons/noUser.png') }}" alt="Avatar" class="avatar">
+{% endif %}
+<br>
+{{user.username}}
+<hr>
+
+
+
+<br>
+{% if user.spes %}
+Spés: <br>{{user.spes}}
+<br><br>
+{% endif %}
+
+{% if user.email %}
+Email:<br>{{user.email}}
+<br><br>
+{% endif %}
+
+{% if user.description %}
+Description: <br>{{user.description}}
+<br><br>
+{% endif %}
+
+{% if user.classe %}
+Classe: <br>{{user.classe}}
+<br><br>
+{% endif %}
+
+{% if user.parcours %}
+Parcours: <br>{{user.parcours}}
+<br><br>
+{% endif %}
+
+{% if user.q_a %}
+Quelques infos en vrac:<br>{{user.q_a}}
+<br><br>
+{% endif %}
+
+{% if user.follow %}
+<hr>
+{% set types =user.follow.split(' ') %}
+{% for type in types %}
+{{type}}<br>
+{% endfor %}
+<br><br>
+{% endif %}
+</div>
+
+<br>
+{% if user == current_user %}
+<div class="modify_button">
+    <a href="modify_user" class="modify_button">Modifier le profil</a>
+<br>
+<br>
+<br>
+    <a href="{{ url_for('logout')}}" class="modify_button">Se déconnecter</a>
+<br>
+</div>
+{% endif %}
+
+{% if user == current_user or current_user.admin == 1 %}
+<form method="POST" action="{{ url_for('delete_user', id=current_user.id) }}" class="delete_button">
+    <input type="submit" value="Supprimer le compte" class="delete" onclick="return confirm('Voulez-vous vraiment supprimer votre compte?')">
+     </form>
+{% endif %}
+
+{% if user != current_user  %}
+    <div class="send_button">
+    <a href="{{ url_for('send', id=user.id) }}">Envoyer un message</a>
+    </div>
+{% endif %}
+{% endblock %}

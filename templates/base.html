@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- CSS -->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename= 'css/navBar.css') }}"
+    />
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename= 'css/style.css') }}"
+    />
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename= 'css/toaster.css') }}"
+    />
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename= 'css/checkboxes.css') }}"
+    />
+
+
+
+
+
+
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+    <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
+
+    
+    <title>Tourtle</title>
+  </head>
+    <body>
+
+
+
+      <div class="begin"></div>
+      <div class="topBar">
+      <nav class="navbar">          
+          <a href="/"><img src="{{ url_for('static', filename='icons/house.svg') }}"></a>
+          <a href="/messages"><img src="{{ url_for('static', filename='icons/messages.svg') }}"></a>
+          <a href="/"><img id="title" src="{{ url_for('static', filename='icons/titre.png') }}"></a>
+          <a href="/search"><img src="{{ url_for('static', filename='icons/search.svg') }}"></a>
+          <a href="/{{current_user.id}}/userInfos"><img src="{{ url_for('static', filename='icons/user.png') }}"></a>
+          
+      </nav>
+    </div>
+      <div>{% block content %} {% endblock %}</div>
+        
+
+    <div class="bottomBar">
+    <nav class="navbar2">
+        <a href="/write_blog"><img src="{{ url_for('static', filename='icons/blog.png') }}"></a>
+        <a href="/dst"><img src="{{ url_for('static', filename='icons/test.png') }}"></a>
+        <a href="/calendar"><img src="{{ url_for('static', filename='icons/calendar.png') }}"></a>
+        <a href="/livres"><img src="{{ url_for('static', filename='icons/book.png') }}"></a>
+    </nav>
+  </div>
+  <div class="end">
+    
+  </div>
+
+
+
+    <script src="{{url_for('static', filename='js/script.js')}}"></script>
+
+
+  </body>
+</html>

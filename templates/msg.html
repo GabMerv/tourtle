@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- CSS -->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename= 'css/navBar.css') }}"
+    />
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename= 'css/style.css') }}"
+    />
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename= 'css/search.css') }}"
+    />
+
+    <link
+    rel="stylesheet"
+    href="{{ url_for('static', filename= 'css/messages.css') }}"
+  />
+
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+    <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
+
+    
+    <title>Tourtle</title>
+  </head>
+    <body>
+        <div class="begin"></div>
+        <div class="topBar">
+            <div class="sticked_p" id="nav1">
+                <p class="back-img">
+                <a href="/messages">
+                    <img src="{{ url_for('static', filename='icons/arrow_left.png') }}" class="back">
+                </a>
+            </p>
+                {% if receiver.pp != "" %}
+                    <img src="/{{receiver.pp}}" class="avatar">
+                    {% endif %}
+                    <br>
+                    {% if receiver.pp == "" %}
+                    <img src="{{ url_for('static', filename='icons/noUser.png') }}" alt="Avatar" class="avatar">
+                    {% endif %} 
+                    <a href="/{{receiver.id}}/userInfos" class="username"><b>{{receiver.username}}</b></a>
+                <input id="searchbarMsg" onkeyup="search()" type="text" name="search" placeholder="Rechercher dans la conversation...">
+            </div>
+        </div>
+        <div>{% block content %} {% endblock %}</div>
+
+        <div class="bottomBar">
+            <div class="sticked_form" id="nav2">
+            <form method = "POST" autocomplete="off">
+                <div class="w_msg">
+            <textarea rows="5" cols="60" name="content" placeholder="" required="" style="resize: none" id="messageBar"></textarea>
+            
+            <button type ="submit" class="submit_btn"><img src ="{{ url_for('static', filename='icons/paper_plane.png') }}"> </button>
+        </div>
+            </form>
+        </div>
+    </div>
+        <div class="end"></div>
+    <script src="{{url_for('static', filename='js/script.js')}}"></script>
+    <script src="{{url_for('static', filename='js/actualise_messages.js')}}"></script>
+
+
+
+  </body>
+</html>

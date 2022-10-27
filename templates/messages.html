@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% block content %}
+<link
+rel="stylesheet"
+href="{{ url_for('static', filename= 'css/messages.css') }}"
+/>
+
+<link
+rel="stylesheet"
+href="{{ url_for('static', filename= 'css/search.css') }}"
+/>
+
+<div class="conversation">
+    <input id="searchbar" onkeyup="search()" type="text"
+name="search" placeholder="Lancer une conversation..">
+    <ul id="hide">
+        {% for user in utilisateurs %}
+        {% if user.id != current_user.id %}
+        <li class="searched"> <a href="/{{user.id}}/send">@{{user.username}}</a> </li>
+        {% endif %}
+        {% endfor %}
+    </ul>
+</div>
+
+{% set i = -1 %}
+{% for conversation in conversations %}
+{% set i = i+1 %}
+
+{% if conversation.author_id != current_user.id %}
+<a href="/{{conversation.author_id}}/send">
+{% endif %}
+{% if conversation.receiver_id != current_user.id %}
+<a href="/{{conversation.receiver_id}}/send">
+{% endif %}
+<div class="conversation">
+{% if users[i] == "" %}
+<img src="{{ url_for('static', filename='icons/noUser.png') }}" alt="Avatar" class="avatar">
+{% endif %}
+{% if users[i] != "" %}
+<img src="/{{users[i]}}" alt="Avatar" class="avatar">
+{% endif %}
+{% if conversation.author_id != current_user.id %}
+<div>
+    {{conversation.author_name}}
+</div>
+
+
+{% endif %}
+{% if conversation.receiver_id != current_user.id %}
+<div>
+    {{conversation.receiver_name}}
+</div>
+
+{% endif %}
+</div>
+</a>
+
+{% endfor %}
+
+<script src="static/js/search.js"></script>
+
+{% endblock %}

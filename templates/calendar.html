@@ -1,0 +1,91 @@
+{% extends 'base.html' %} {% block content %}
+
+<link
+rel="stylesheet"
+href="{{ url_for('static', filename= 'css/calendar.css') }}"
+/>
+
+{% set ns2 = namespace(i=-1) %}
+{% for post in posts %}
+{% set ns2.i = ns2.i+1 %}
+{% set ns = namespace(followed=False) %}
+
+{% for f in post.types.split(' ')%}
+
+{% if f in current_user.follow.split(' ') %}
+
+{% set ns.followed = True %}
+
+{% endif %}
+
+{% endfor %}
+
+
+<div class="post">
+{% if not ns.followed %}
+    <details id="{{post.id}}-event">
+{% endif %}
+{% if ns.followed %}
+    <details class="followed" id="{{post.id}}-event">
+{% endif %}
+        <summary>
+            {{post.title}}: {{post.dates}}
+        </summary>
+        <p class="little">{{post.types}}</p>
+        <hr>
+        <p class="little">
+        {%for line in post.description_.split('\n')%}
+        {{line}}
+        <br>
+        {% endfor %}
+    </p>
+<br>
+<p class="little">
+ Organisateur: <a href="/{{post.creator_id}}/userInfos" class="linkedName">{{post.creator_name}}</a>
+</p>
+
+{% if post.creator_id == current_user.id %}
+
+{% if suscribers[ns2.i]|length >=1 %}
+<hr>
+Inscrits:
+{% for sus in suscribers[ns2.i] %}
+<p class="suscriber">{{sus}}</p>
+
+{% endfor %}
+{% endif %}
+
+<hr>
+
+{% endif %}
+{% if current_user.id|string in post.participants.split(' ') %}
+<form method="POST" action="{{ url_for('unsuscribe', id=post['id']) }}" >
+    <input type="submit" value="Se désisncrire" id="suscriveEvent"
+          onclick="return confirm('Voulez-vous vraiment vous désinscrire?')">
+    </form>
+{% endif %}
+
+{% if current_user.id|string not in post.participants.split(" ") %}
+<form method="POST" action="{{ url_for('suscribe', id=post['id']) }}" >
+    <input type="submit" value="S'inscrire" id="suscriveEvent"
+          onclick="return confirm('Voulez-vous vraiment vous inscrire?')">
+     </form>
+{% endif %}
+{% if post.creator_id == current_user.id or current_user.admin == 1 %}
+<hr>
+<form method="POST" action="{{ url_for('delete_event', id=post['id']) }}" >
+    <input type="submit" value="Supprimer" id="deleteEvent"
+          onclick="return confirm('Voulez-vous vraiment supprimer cet évènement?')">
+</form>
+{% endif %}
+    </details>
+
+</div>
+{% endfor %}
+<p class="center">
+    <a href="/add_event" class="center" id="addEvent">Ajouter un évènement</a>
+  </p>
+
+
+<script src="static/js/openEvent.js"></script>
+{% endblock %}
