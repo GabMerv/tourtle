@@ -1,72 +1,69 @@
-body{
-    margin:0;
-    padding: 0;
-    background-attachment: fixed;
-    height: 100%;
-    background-color:  #e0e0e0;
-    font-family: "Baskerville Old Face";
+body {
+  margin: 0;
+  padding: 0;
+  background-attachment: fixed;
+  height: 100%;
+  background-color: #e0e0e0;
+  font-family: "Baskerville Old Face";
 }
 
 .center {
-    text-align: center;
+  text-align: center;
 }
 
 html {
-    margin: 0;
-    margin-bottom: -500px;
-    height: 100%;
+  margin: 0;
+  margin-bottom: -500px;
+  height: 100%;
 }
 
 .little {
-    font-size: small;
-    color:#222222
+  font-size: small;
+  color: #222222;
 }
 
 .big {
-    font-size: large;
-    color:#222222
+  font-size: large;
+  color: #222222;
 }
 
 .vide {
-    margin-top: 2.5%;
-    margin-bottom: 2.5%;
-    width: 75%;
-    max-width: 700px;
-    padding: 20% 70px 20% 70px;
-    margin: 0 auto;
-    font-size: 22px;
-    border-radius: 15px;
-    box-sizing: border-box;
-    transition: all .3s;
-    position: relative;
-    background: #e0e0e0;
-    box-shadow:  20px 20px 60px #bebebe,
-             -20px -20px 60px #ffffff;
+  margin-top: 2.5%;
+  margin-bottom: 2.5%;
+  width: 75%;
+  max-width: 700px;
+  padding: 20% 70px 20% 70px;
+  margin: 0 auto;
+  font-size: 22px;
+  border-radius: 15px;
+  box-sizing: border-box;
+  transition: all 0.3s;
+  position: relative;
+  background: #e0e0e0;
+  box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
 }
 
 @keyframes sweep {
-    0% {
-      opacity: 0;
-      transform: translateX(-10px);
-    }
-    100% {
-      opacity: 1;
-      transform: translateX(0);
-    }
+  0% {
+    opacity: 0;
+    transform: translateX(-10px);
   }
-
-
-  details[open] summary ~ * {
-    animation: sweep 0.5s ease-in-out;
+  100% {
+    opacity: 1;
+    transform: translateX(0);
   }
+}
 
-  .avatar {
-    width:35px;
-    height: 35px;
-    margin-left: 10px;
-    background-color: white;
-    border-radius: 50%;
-    object-fit: cover;
+details[open] summary ~ * {
+  animation: sweep 0.5s ease-in-out;
+}
+
+.avatar {
+  width: 35px;
+  height: 35px;
+  background-color: white;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
 textarea {
@@ -75,16 +72,15 @@ textarea {
   width: 75%;
   max-width: 75%;
   min-width: 50%;
-  border:none;
+  border: none;
   text-decoration: none;
   border-radius: 10px;
   color: black;
   background: #ededed;
-  box-shadow:  20px 20px 60px #c9c9c9,
-               -20px -20px 60px #ffffff;
+  box-shadow: 20px 20px 60px #c9c9c9, -20px -20px 60px #ffffff;
 }
 
 a {
   text-decoration: none;
-  color: black
+  color: black;
 }

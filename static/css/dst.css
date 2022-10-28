@@ -1,120 +1,115 @@
 details {
-    width: 75%;
-    min-height: 5px;
-    max-width: 700px;
-    padding: 45px 70px 45px 45px;
-    margin: 0 auto;
-    font-size: 22px;
-    border-radius: 15px;
-    box-sizing: border-box;
-    transition: all .3s;
-    position: relative;
-    background: #e0e0e0;
-    box-shadow:  20px 20px 60px #bebebe,
-             -20px -20px 60px #ffffff;
+  width: 75%;
+  min-height: 5px;
+  max-width: 700px;
+  padding: 45px 70px 45px 45px;
+  margin: 0 auto;
+  font-size: 22px;
+  border-radius: 15px;
+  box-sizing: border-box;
+  transition: all 0.3s;
+  position: relative;
+  background: #e0e0e0;
+  box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
+}
 
-  }
-  
-  details + details {
-    margin-top: 20px;
-  }
-  
-  details[open] {
-    min-height: 50px;
-    background-color: #bebebea2;
-    box-shadow: 2px 2px 20px rgba(0,0,0,.2);
-  }
+details + details {
+  margin-top: 20px;
+}
 
-  details p {
-    color: white;
-    font-weight: 300;
-  }
-  
-  summary {
-    color: black;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-weight: 500;
-    cursor: pointer;
-    
-  }
-  
-  summary:focus {
-    outline: none;
-    
-  }
-  
-  summary:focus::after {
-    content: "";
-    height: 100%;
-    width: 100%;
-    display: block;
-    top: 0;
-    left: 0;
-    position: absolute;
+details[open] {
+  min-height: 50px;
+  background-color: #bebebea2;
+  box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.2);
+}
 
-  }
-  
-  summary::-webkit-details-marker {
-    display: none
-  }
-  
-  .control-icon {
-    transition: .3s ease;
-    pointer-events: none;
-  }
-  
-  .control-icon-close {
-    display: none;
-  }
-  
-  details[open] .control-icon-close {
-    display: initial;
-    transition: .3s ease;
-  }
-  
-  details[open] .control-icon-expand {
-    display: none;
-  }
-  
-  input {
-    color: white;
-    font-size: 15px;
-    text-decoration: none;
-    padding: 5px;
-    border:none;
-    outline: none;
-    background: none;
-    cursor: pointer;
-    position: relative;
-    z-index: 900;
-    text-align: center;
-  }
+details p {
+  color: white;
+  font-weight: 300;
+}
 
-  .dwn {
-    color: white;
-    font-size: 15px;
-    text-decoration: none;
-    padding: 5px;
-    border:none;
-    outline: none;
-    background: none;
-    cursor: pointer;
-    position: relative;
-    z-index: 900;
-    text-align: center;
-  }
-  .dst_image {
-    width: 100%;
-    max-width: 600px;
-  }
+summary {
+  color: black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+summary:focus {
+  outline: none;
+}
+
+summary:focus::after {
+  content: "";
+  height: 100%;
+  width: 100%;
+  display: block;
+  top: 0;
+  left: 0;
+  position: absolute;
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
+.control-icon {
+  transition: 0.3s ease;
+  pointer-events: none;
+}
+
+.control-icon-close {
+  display: none;
+}
+
+details[open] .control-icon-close {
+  display: initial;
+  transition: 0.3s ease;
+}
+
+details[open] .control-icon-expand {
+  display: none;
+}
+
+input {
+  color: white;
+  font-size: 15px;
+  text-decoration: none;
+  padding: 5px;
+  border: none;
+  outline: none;
+  background: none;
+  cursor: pointer;
+  position: relative;
+  z-index: 900;
+  text-align: center;
+}
+
+.dwn {
+  color: white;
+  font-size: 15px;
+  text-decoration: none;
+  padding: 5px;
+  border: none;
+  outline: none;
+  background: none;
+  cursor: pointer;
+  position: relative;
+  z-index: 900;
+  text-align: center;
+}
+.dst_image {
+  width: 100%;
+  max-width: 600px;
+}
 
 embed {
-  width: 100%; 
-  aspect-ratio:9/6;
-    position: relative;
-    z-index: 900;
+  width: 100%;
+  aspect-ratio: 9/6;
+  position: relative;
+  z-index: 900;
 }
 
 #addDst {
@@ -123,6 +118,5 @@ embed {
   color: rgb(0, 0, 0);
   border-radius: 50px;
   background: #e0e0e0;
-  box-shadow:  -20px -20px 60px #bebebe,
-               20px 20px 60px #ffffff;
+  box-shadow: -20px -20px 60px #bebebe, 20px 20px 60px #ffffff;
 }

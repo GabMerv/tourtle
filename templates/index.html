@@ -5,10 +5,15 @@ rel="stylesheet"
 href="{{ url_for('static', filename= 'css/blog.css') }}"
 />
 
+<link
+rel="stylesheet"
+href="{{ url_for('static', filename= 'css/modal.css') }}"
+/>
+
  <br>
  {% if not posts%}
     <div class="vide">Pas de posts pour l'instant...<br>
-    Allez vite en créer un: <br>
+    Allez vite en créer un : <br>
         <a href="/write_blog" class="createBtn">C'est ici</a>
 </div>
  {% endif %}
@@ -52,9 +57,38 @@ href="{{ url_for('static', filename= 'css/blog.css') }}"
 </p>
 <br>
 {% set images = post['images'].split(' ') %}
+{% set ns = namespace(i=0)%}
     {% for image in images %}
+        {% set ns.i = ns.i + 1 %}
         {% if image[-3:] == "jpg" or image[-3:] == "png" or image[-3:] == "jfif" or image[-4:] == "jpeg" %}
-          <img class="blog_image" src={{ image }}><br><br>
+          <img class="blog_image" src="{{ image }}" id="image-{{post.id}}-{{ns.i}}" loading="lazy"><br><br>
+          <div id="myModal-{{post.id}}-{{ns.i}}" class="modal">
+          <img class="modal-content" id="img-{{post.id}}-{{ns.i}}" loading="lazy">
+          <div id="caption-{{post.id}}-{{ns.i}}"></div>
+          </div>
+  <script>
+// Get the modal
+var modal = document.getElementById("myModal-{{post.id}}-{{ns.i}}");
+
+// Get the image and insert it inside the modal - use its "alt" text as a caption
+var img = document.getElementById("image-{{post.id}}-{{ns.i}}");
+var modalImg = document.getElementById("img-{{post.id}}-{{ns.i}}");
+var captionText = document.getElementById("caption-{{post.id}}-{{ns.i}}");
+
+function showModal(){
+  modal.style.display = "block";
+  modalImg.src = this.src;
+}    
+function hideModal(){
+  modal.style.display = "none";
+}
+
+img.addEventListener("click", showModal);
+modalImg.addEventListener("click", hideModal);
+
+
+
+</script>
         {% endif %}
           
     {% endfor %}
@@ -83,14 +117,42 @@ href="{{ url_for('static', filename= 'css/blog.css') }}"
 <div class="followed-img" id="{{post.id}}-blog">
 {% endif %}
 {% set images = post['images'].split(' ') %}
+{% set ns = namespace(i=0)%}
     {% for image in images %}
+        {% set ns.i = ns.i + 1 %}
         {% if image[-3:] == "jpg" or image[-3:] == "png" or image[-3:] == "jfif" or image[-4:] == "jpeg" %}
-          <img src={{ image }}><br><br>
+          <img src="{{ image }}" id="image-{{post.id}}-{{ns.i}}" loading="lazy"><br><br>
+          <div id="myModal-{{post.id}}-{{ns.i}}" class="modal">
+          <img class="modal-content" id="img-{{post.id}}-{{ns.i}}" loading="lazy">
+          <div id="caption-{{post.id}}-{{ns.i}}"></div>
+          </div>
+
+          <script>
+// Get the modal
+var modal = document.getElementById("myModal-{{post.id}}-{{ns.i}}");
+
+// Get the image and insert it inside the modal - use its "alt" text as a caption
+var img = document.getElementById("image-{{post.id}}-{{ns.i}}");
+var modalImg = document.getElementById("img-{{post.id}}-{{ns.i}}");
+var captionText = document.getElementById("caption-{{post.id}}-{{ns.i}}");
+            
+function showModal(){
+  modal.style.display = "block";
+  modalImg.src = this.src;
+}    
+function hideModal(){
+  modal.style.display = "none";
+}
+
+img.addEventListener("click", showModal);
+modalImg.addEventListener("click", hideModal);
+
+</script>
         {% endif %}
           
     {% endfor %}
 <p class="little"><a href="/{{post.author_id}}/userInfos" class="linkedName">{{post.author_name}}</a> - {{post.created}}</p>
-{% if post.author_id == current_user.id %}
+{% if post.author_id == current_user.id or current_user.admin == 1%}
 <hr>
 <form method="POST" action="{{ url_for('delete_blog', id=post['id']) }}" >
     <input type="submit" value="Supprimer" id="deleteBlog"
@@ -112,7 +174,7 @@ href="{{ url_for('static', filename= 'css/blog.css') }}"
 <iframe src="{{ post.link }}">
 </iframe>
 <p class="little"><a href="/{{post.author_id}}/userInfos" class="linkedName">{{post.author_name}}</a> - {{post.created}}</p>
-{% if post.author_id == current_user.id %}
+{% if post.author_id == current_user.id or current_user.admin == 1 %}
 <hr>
 <form method="POST" action="{{ url_for('delete_blog', id=post['id']) }}" >
     <input type="submit" value="Supprimer" id="deleteBlog"

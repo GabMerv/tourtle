@@ -1,41 +1,82 @@
-{% extends 'base.html' %}
-
-{% block content %}
+{% extends 'base.html' %} {% block content %}
 <link
-rel="stylesheet"
-href="{{ url_for('static', filename= 'css/search.css') }}"
+  rel="stylesheet"
+  href="{{ url_for('static', filename= 'css/search.css') }}"
 />
 
 <div class="searchBox">
-<input id="searchbar" onkeyup="search()" type="text"
-name="search" placeholder="Rechercher un élément..">
-<br>
+  <input
+    id="searchbar"
+    onkeyup="search()"
+    type="text"
+    name="search"
+    placeholder="Rechercher un élément.."
+  />
+  <br /><br>
+  <details>
+<summary>
+  Filtres
+</summary>
+    
+    <hr>
+    {% for f in follow %}
+        <label class="container"
+          >{{f.name}}
+          <input type="checkbox" name="{{f.name}}" class="checkboxes" onclick="search()"/>
+          <span class="checkmark"></span>
+        </label>
+        <br />
+        {% endfor %}
+  </details>
 
-<ul id="hide">
-{% for user in users %}
-<li class="searched"> <a href="/{{user.id}}/userInfos">@{{user.username}}</a> </li>
-{% endfor %}
-<br>
-
-{% for blog in blogs %}
-{% if blog.title %}
-<li class="searched"><a href="/#{{blog.id}}-blog">{{blog.title}}</a></li>
-{% endif %}
-{% endfor %}
-<br>
-
-{% for event in events %}
-<li class="searched"><a href="/calendar#{{event.id}}-event">{{event.title}}</a></li>
-{% endfor %}
-<br>
-
-{% for dst in dsts %}
-<li class="searched"><a href="/dst#{{dst.id}}-dst">{{dst.title}}</a></li>
-{% endfor %}
-</ul>
-<br>
-
+  
+  <ul id="hide">
+    <p id="hidden_users">
+      <hr>
+  Utilisateurs:
+  </p>
+    {% for user in users %}
+    <div class="infos" hidden>{{user.follow}}</div>
+    <li class="searched">
+      <a href="/{{user.id}}/userInfos" class="userLinks">@{{user.username}}</a>
+    </li>
+    {% endfor %}
+    <br />
+    <p id="hidden_blogs">
+      <hr>
+  Blogs:
+  </p>
+    {% for blog in blogs %} {% if blog.title %}
+    <div class="infos" hidden>{{blog.types}}</div>
+    <li class="searched"><a href="/#{{blog.id}}-blog" class="blogLinks">{{blog.title}}</a></li>
+    {% endif %} {% endfor %}
+    <br />
+    <p id="hidden_events">
+      <hr>
+  Evènements:
+  </p>
+    {% for event in events %}
+    <div class="infos" hidden>{{event.types}}</div>
+    <li class="searched">
+      <a href="/calendar#{{event.id}}-event" blog="eventLinks">{{event.title}}</a>
+    </li>
+    {% endfor %}
+    <br />
+    <p id="hidden_dst">
+      <hr>
+  DST:
+  </p>
+    {% for dst in dsts %}
+    <div class="infos" hidden></div>
+    <li class="searched"><a href="/dst#{{dst.id}}-dst" class="dstLinks">{{dst.title}}</a></li>
+    {% endfor %}
+    <br>
+    <hr>  </ul>
+  <br />
+  
 </div>
-<script src="static/js/search.js"></script>
+
+<script src="/static/js/searchWithFilters.js"></script>
+
 
 {% endblock %}

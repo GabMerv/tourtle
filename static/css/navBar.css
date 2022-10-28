@@ -1,7 +1,7 @@
 nav {
   position: sticky;
-  display:flex;
-  overflow:hidden;
+  display: flex;
+  overflow: hidden;
   justify-content: center;
   margin-bottom: 0;
   z-index: 1000;
@@ -13,7 +13,7 @@ nav {
   margin: auto;
   height: 50px;
 }
-  
+
 nav a {
   float: left;
   font-size: 16px;
@@ -24,8 +24,7 @@ nav a {
   text-transform: uppercase;
   letter-spacing: 4px;
   transition: all 0.5s ease;
-  }
-  
+}
 
 nav img {
   height: 25px;
@@ -33,44 +32,42 @@ nav img {
 }
 
 .navbar a img {
-    margin-left: -10px;
-    margin-right: -10px;
+  margin-left: -10px;
+  margin-right: -10px;
 }
 
-
-nav a #title{
+nav a #title {
   height: 25px;
   width: auto;
   padding: 0;
   margin-left: -15px;
   margin-right: -15px;
-
 }
 
-.bottomBar{
+.bottomBar {
   bottom: 0;
   width: 100%;
   position: fixed;
   z-index: 1000;
 }
 
-.topBar{
+.topBar {
   top: 0;
   width: 100%;
   position: fixed;
   z-index: 1000;
 }
 
-.navbar2{
+.navbar2 {
   position: sticky;
-  bottom: 0; 
+  bottom: 0;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
 }
 
 .navbar {
-  position:sticky;
-  top:0;
+  position: sticky;
+  top: 0;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
 }
@@ -82,15 +79,15 @@ nav a #title{
 }
 
 .begin {
-    position: static;
-    margin-bottom: 50px;
-    padding: 10px;
+  position: static;
+  margin-bottom: 50px;
+  padding: 10px;
 }
 
 .sticked_p {
   position: sticky;
-  display:flex;
-  overflow:hidden;
+  display: flex;
+  overflow: hidden;
   justify-content: center;
   margin-bottom: 0;
   z-index: 1000;
@@ -105,8 +102,8 @@ nav a #title{
 
 .sticked_form {
   position: sticky;
-  display:flex;
-  overflow:hidden;
+  display: flex;
+  overflow: hidden;
   justify-content: center;
   margin-bottom: 0;
   z-index: 1000;

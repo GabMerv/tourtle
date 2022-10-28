@@ -1,113 +1,157 @@
 .messageBox {
-    margin: auto;
-    margin-top: 10px;
-    color: black;
-    text-align: center;
-    padding: 10px;
-    width: 75%;
-    min-height: 5px;
-    max-width: 700px;
-    border-radius: 10px;
-    background: #e0e0e0;
-    box-shadow:  20px 20px 60px #bebebe,
-                 -20px -20px 60px #ffffff;
+  margin: auto;
+  margin-top: 10px;
+  color: black;
+  text-align: center;
+  padding: 10px;
+  width: 75%;
+  min-height: 5px;
+  max-width: 700px;
+  border-radius: 10px;
+  background: #e0e0e0;
+  box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
 }
 
 .sended_msg {
-    right: 0;
-    text-align: right;
-    margin-left: 31%;
-    margin-bottom: 10px;
-    max-width: 50%;
-    font-size: small;
-    padding: 10px;
-    border-radius: 10px;
-    background: #ededed;
-    box-shadow:  20px 20px 60px #c9c9c9,
-                 -20px -20px 60px #ffffff;
+  right: 0;
+  text-align: right;
+  margin-left: 31%;
+  margin-bottom: 10px;
+  max-width: 50%;
+  font-size: small;
+  padding: 10px;
+  border-radius: 10px;
+  background: #ededed;
+  box-shadow: 20px 20px 60px #c9c9c9, -20px -20px 60px #ffffff;
 }
 
 .received_msg {
-    left: 0;
-    text-align: left;
-    margin-left: 10%;
-    margin-bottom: 10px;
-    max-width: 50%;
-    font-size: small;
-    padding: 10px;
-    border-radius: 10px;
-    background: #ededed;
-    box-shadow:  20px 20px 60px #c9c9c9,
-                 -20px -20px 60px #ffffff;
+  left: 0;
+  text-align: left;
+  margin-left: 10%;
+  margin-bottom: 10px;
+  max-width: 50%;
+  font-size: small;
+  padding: 10px;
+  border-radius: 10px;
+  background: #ededed;
+  box-shadow: 20px 20px 60px #c9c9c9, -20px -20px 60px #ffffff;
 }
 
 .submit_btn {
-    padding: 10px;
-    border-radius: 50%;
-    border: none;
-    cursor: pointer;
+  padding: 10px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
 }
 
+.submit_img {
+  margin-right: -5px;
+  bottom:0;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  width: 20px;
+  margin-top: 33px;
+  border: none;
+  text-decoration: none;
+  border-radius: 10px;
+  background: #ededed;
+  box-shadow: 20px 20px 60px #c9c9c9, -20px -20px 60px #ffffff;
+}
+
+
 .w_msg {
-    display:block;
-    text-align: center;
-    width: 100%;
-  }
-  
-  .w_msg button {
-    margin-top: 10px;
-    margin-bottom: 10px;
-    border:none;
-    text-decoration: none;
-    border-radius: 10px;
-    color: black;
-    background: #ededed;
-    box-shadow:  20px 20px 60px #c9c9c9,
-                 -20px -20px 60px #ffffff;
-  }
+  display: block;
+  text-align: center;
+  width: 100%;
+}
 
-
+.w_msg button {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: none;
+  text-decoration: none;
+  border-radius: 10px;
+  color: black;
+  background: #ededed;
+  box-shadow: 20px 20px 60px #c9c9c9, -20px -20px 60px #ffffff;
+}
 
 textarea {
-    margin-bottom: -30px;
+  margin-bottom: -30px;
 }
 
 .conversation {
-    margin: auto;
-    margin-top: 10px;
-    color: black;
-    text-align: center;
-    padding: 10px;
-    width: 75%;
-    min-height: 5px;
-    max-width: 700px;
-    border-radius: 10px;
-    background: #e0e0e0;
-    box-shadow:  20px 20px 60px #bebebe,
-                 -20px -20px 60px #ffffff;
+  margin: auto;
+  margin-top: 10px;
+  color: black;
+  text-align: center;
+  padding: 10px;
+  width: 75%;
+  min-height: 5px;
+  max-width: 700px;
+  border-radius: 10px;
+  background: #e0e0e0;
+  box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
+}
+.conversation-read {
+  margin: auto;
+  margin-top: 10px;
+  color: black;
+  text-align: center;
+  padding: 10px;
+  width: 75%;
+  min-height: 5px;
+  max-width: 700px;
+  border-radius: 10px;
+  background: #e0e0e0;
+  box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
+}
+
+.conversation-unread {
+  margin: auto;
+  margin-top: 10px;
+  color: black;
+  text-align: center;
+  padding: 10px;
+  width: 75%;
+  min-height: 5px;
+  max-width: 700px;
+  border-radius: 10px;
+  background: #feffb1d2;
+  box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
 }
 
 #hide {
-    display: block;
- }
+  display: block;
+}
 
- ul {
-    list-style-type: none;
- }
+ul {
+  list-style-type: none;
+}
 
- li {
-    text-align: left;
- }
+li {
+  text-align: left;
+}
 
-#hide2{
-    display: none;
- }
+#hide2 {
+  display: none;
+}
 
- .back-img {
-    height: 100%;
-    margin:0
- }
+.back-img {
+  height: 100%;
+  margin: 0;
+}
 
- .back{
-    margin-top:50%;
- }
+.back {
+  margin-top: 50%;
+}
+
+.searched {
+  word-wrap: break-word;
+}
+
+.msgImg{
+  width: 100%;
+}

@@ -49,5 +49,7 @@ CREATE TABLE messages (
     receiver_id INTEGER,
     author_name TEXT,
     receiver_name TEXT,
-    content TEXT
+    content TEXT,
+    images TEXT,
+    read INT
 );

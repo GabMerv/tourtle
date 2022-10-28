@@ -1,103 +1,94 @@
 #infoChart {
-    
-    margin: auto;
-    margin-top: 10px;
-    color: black;
-    text-align: center;
-    padding: 10px;
-    width: 75%;
-    min-height: 5px;
-    max-width: 700px;
-    border-radius: 10px;
-    background: #e0e0e0;
-    box-shadow:  20px 20px 60px #bebebe,
-                 -20px -20px 60px #ffffff;
+  margin: auto;
+  margin-top: 10px;
+  color: black;
+  text-align: center;
+  padding: 10px;
+  width: 75%;
+  min-height: 5px;
+  max-width: 700px;
+  border-radius: 10px;
+  background: #e0e0e0;
+  box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
 }
-
 
 .modify_button {
-    margin: auto;
-    text-align: center; 
+  margin: auto;
+  text-align: center;
 }
 .modify_button a {
-    margin-bottom: 100px;
-    text-align: center;
-    text-decoration: none;
-    padding: 10px;
-    border-radius: 10px;
-    color: black;
-    background: #e0e0e0;
-    box-shadow:  20px 20px 60px #bebebe,
-             -20px -20px 60px #ffffff;
-    z-index: 0;
+  margin-bottom: 100px;
+  text-align: center;
+  text-decoration: none;
+  padding: 10px;
+  border-radius: 10px;
+  color: black;
+  background: #e0e0e0;
+  box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
+  z-index: 0;
 }
 
-
 .send_button {
-    margin: auto;
-    text-align: center; 
+  margin: auto;
+  text-align: center;
 }
 
 .send_button a {
-    cursor: pointer;
-    margin-bottom: 100px;
-    text-align: center;
-    text-decoration: none;
-    padding: 10px;
-    border-radius: 10px;
-    color: black;
-    background: #e0e0e0;
-    box-shadow:  20px 20px 60px #bebebe,
-             -20px -20px 60px #ffffff;
-    z-index: 0;
+  cursor: pointer;
+  margin-bottom: 100px;
+  text-align: center;
+  text-decoration: none;
+  padding: 10px;
+  border-radius: 10px;
+  color: black;
+  background: #e0e0e0;
+  box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
+  z-index: 0;
 }
 
-
 input {
-    margin:10px;
-    border:none;
-    text-decoration: none;
-    border-radius: 10px;
-    color: black;
-    background: #ededed;
-    box-shadow:  20px 20px 60px #c9c9c9,
-                 -20px -20px 60px #ffffff;
+  margin: 10px;
+  border: none;
+  text-decoration: none;
+  border-radius: 10px;
+  color: black;
+  background: #ededed;
+  box-shadow: 20px 20px 60px #c9c9c9, -20px -20px 60px #ffffff;
 }
 
 .submit_btn {
-    color: black;
-    font-size: 15px;
-    text-decoration: none;
-    padding: 10px;
-    border:none;
-    outline: none;
-    background: none;
-    cursor: pointer;
-    text-align: center;
-  }
+  color: black;
+  font-size: 15px;
+  text-decoration: none;
+  padding: 10px;
+  border: none;
+  outline: none;
+  background: none;
+  cursor: pointer;
+  text-align: center;
+}
 
 .delete_button {
-    color: black;
-    font-size: 15px;
-    text-decoration: none;
-    padding: 10px;
-    border:none;
-    outline: none;
-    background: none;
-    cursor: pointer;
-    text-align: center;
+  color: black;
+  font-size: 15px;
+  text-decoration: none;
+  padding: 10px;
+  border: none;
+  outline: none;
+  background: none;
+  cursor: pointer;
+  text-align: center;
 }
 
 .delete {
-    cursor: pointer;
-    margin-bottom: 10px;
-    text-align: center;
-    text-decoration: none;
-    padding: 10px;
-    border-radius: 10px;
-    color: red;
-    background: #e0e0e0;
-    box-shadow:  20px 20px 60px #bebebe,
-             -20px -20px 60px #ffffff;
-    z-index: 0;
+  cursor: pointer;
+  margin-bottom: 10px;
+  text-align: center;
+  text-decoration: none;
+  padding: 10px;
+  border-radius: 10px;
+  color: red;
+  background: #e0e0e0;
+  box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
+  z-index: 0;
 }

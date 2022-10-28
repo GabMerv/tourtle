@@ -1,78 +1,75 @@
-#searchbar{
-    padding:15px;
-    border-radius: 10px;
-    border: none;
-    background: #e7e7e7;
-    box-shadow:  20px 20px 60px #bebebe,
-    -20px -20px 60px #ffffff;
-  }
-
-  #searchbarMsg{
-   margin-bottom: 10px;
-   padding:10px;
-   border-radius: 10px;
-   border: none;
-   margin-left: 12px;
-   background: #e7e7e7;
-   box-shadow:  20px 20px 60px #bebebe,
-   -20px -20px 60px #ffffff;
- }
-
-  input[type=text] {
-     width: 70%;
-     -webkit-transition: width 0.15s ease-in-out;
-     transition: width 0.15s ease-in-out;
-     border:none;
-  }
-#searchbarMsg[type=text] {
-   width: 20%
-  }
-
-  /* When the input field gets focus,
-       change its width to 100% */
-  input[type=text]:focus {
-    width: 90%;
-  }
-
-#searchbarMsg[type=text]:focus {
-   width: 30%;
+#searchbar {
+  padding: 15px;
+  border-radius: 10px;
+  border: none;
+  background: #e7e7e7;
+  box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
 }
-.searched{
-    font-size: medium;
- } 
 
- .searchBox {
-    width: 90%;
-    min-height: 5px;
-    max-width: 700px;
-    padding: 45px 70px 45px 45px;
-    margin: 0 auto;
-    font-size: 22px;
-    border-radius: 15px;
-    box-sizing: border-box;
-    transition: all .3s;
-    position: relative;
-    border-radius: 50px;
-    background: #e0e0e0;
-    box-shadow:  20px 20px 60px #bebebe,
-             -20px -20px 60px #ffffff;
-    text-align: center;
-    font-size: large;
- }
+#searchbarMsg {
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  margin-left: 12px;
+  background: #e7e7e7;
+  box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
+}
 
- ul {
-    list-style-type: none;
- }
+input[type="text"] {
+  width: 70%;
+  -webkit-transition: width 0.15s ease-in-out;
+  transition: width 0.15s ease-in-out;
+  border: none;
+}
+#searchbarMsg[type="text"] {
+  width: 20%;
+}
 
- li {
-    text-align: left;
- }
+/* When the input field gets focus,
+       change its width to 100% */
+input[type="text"]:focus {
+  width: 90%;
+}
 
- a {
-    text-decoration: none;
-    color: rgba(0, 0, 0, 0.699);
- }
+#searchbarMsg[type="text"]:focus {
+  width: 30%;
+}
+.searched {
+  font-size: medium;
+}
 
- #hide {
-    display: none
- }
+.searchBox {
+  width: 90%;
+  min-height: 5px;
+  max-width: 700px;
+  padding: 45px 70px 45px 45px;
+  margin: 0 auto;
+  font-size: 22px;
+  border-radius: 15px;
+  box-sizing: border-box;
+  transition: all 0.3s;
+  position: relative;
+  border-radius: 50px;
+  background: #e0e0e0;
+  box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
+  text-align: center;
+  font-size: large;
+}
+
+ul {
+  list-style-type: none;
+}
+
+li {
+  text-align: left;
+}
+
+a {
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.699);
+}
+
+#hide {
+  display: none;
+}

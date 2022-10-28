@@ -1,112 +1,210 @@
-
 {% extends 'base.html' %} {% block content %}
 <link
-rel="stylesheet"
-href="{{ url_for('static', filename= 'css/livres.css') }}"
+  rel="stylesheet"
+  href="{{ url_for('static', filename= 'css/livres.css') }}"
 />
 
-<p class="center">
-  </p>
+<p class="center"></p>
 
-  <div style="visibility: hidden; position: absolute; width: 0px; height: 0px;">
-    <svg xmlns="http://www.w3.org/2000/svg">
-      <symbol viewBox="0 0 24 24" id="expand-more">
-        <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/><path d="M0 0h24v24H0z" fill="none"/>
-      </symbol>
-      <symbol viewBox="0 0 24 24" id="close">
-        <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/><path d="M0 0h24v24H0z" fill="none"/>
-      </symbol>
+<div style="visibility: hidden; position: absolute; width: 0px; height: 0px">
+  <svg xmlns="http://www.w3.org/2000/svg">
+    <symbol viewbox="0 0 24 24" id="expand-more">
+      <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z" />
+      <path d="M0 0h24v24H0z" fill="none" />
+    </symbol>
+    <symbol viewbox="0 0 24 24" id="close">
+      <path
+        d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+      />
+      <path d="M0 0h24v24H0z" fill="none" />
+    </symbol>
+  </svg>
+</div>
+
+<details>
+  <summary>
+    Tronc commun<br />
+    <svg
+      class="control-icon control-icon-expand"
+      width="24"
+      height="24"
+      role="presentation"
+    >
+      <use
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        xlink:href="#expand-more"
+      />
     </svg>
-  </div>
-  
-  <details>
-    <summary>
-      Tronc commun<br>
-      <svg class="control-icon control-icon-expand" width="24" height="24" role="presentation"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#expand-more" /></svg>
-      <svg class="control-icon control-icon-close" width="24" height="24" role="presentation"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#close" /></svg>
-    </summary>
-    <p>
-    <button onClick="window.open('https://manuelnumeriquemax.belin.education/histoire-terminale/');"
-        > Histoire</button
-      ><br /><br />
-      <button onClick="window.open('https://manuelnumeriquemax.belin.education/geographie-terminale');"
-        > Géographie</button
-      ><br /><br />
-      <button onClick="window.open('https://www.libmanuels.fr/demo/9782210114531/specimen/304/?title=Philosophie%20Tle%20g%C3%A9n%C3%A9rale%20-%20Ed.%20Sorosina%20(Ed.%20num.%202022)&editor=Magnard');"
-        > Philosophie </button
-      ><br /><br />
-      <button onClick="window.open('https://www.editions-hatier.fr/flip/flex/97824010861350?token=e528b107cefadd373ef2293edf27302e&complet_present=1');"
-        >Carnet de réussite Philospohie</button
-      ><br /><br />
-      <button onClick="window.open('https://mesmanuels.fr/acces-libre/5588107');"
-        > Enseignement scientifique</button
-      >
-    </p>
-  </details>
-  
-  <details>
-  
-    <summary>
-      Langues<br>
-      <svg class="control-icon control-icon-expand" width="24" height="24" role="presentation"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#expand-more" /></svg>
-      <svg class="control-icon control-icon-close" width="24" height="24" role="presentation"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#close" /></svg>
-    </summary>
-    <p>
-    <button onClick="window.open('https://fr.calameo.com/read/0049569797f7bd6a2a9ff');"
-    > Allemand</button
-        ><br /><br />
-        <button onClick="window.open('https://www.editions-hatier.fr/flip/flex/97822780955751?token=4d52952b0dbcbd3c7225202f530893b8');"
-          > Espagnol</button
-        >
-    </p>
-  </details>
-  
-  <details>
-    <summary>
-      Spécialités<br>
-      <svg class="control-icon control-icon-expand" width="24" height="24" role="presentation"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#expand-more" /></svg>
-      <svg class="control-icon control-icon-close" width="24" height="24" role="presentation"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#close" /></svg>
-    </summary>
-    <p>
-    <button onClick="window.open('https://biblio.nathan.fr/specimen/9782091725338/?openBook=9782091725338%3fdXNlck5hbWU9bWtjK2J0SHR5akx6UWNGVjdGOFU2UWtqNytHRHZNTWp6N3ovUW9WenBqMD0mdXNlclBhc3N3b3JkPXpWYVMrNXl5Z2h4dTIzQjRDQXpLMzMvVjNnRFIwaGVvSko4bVZ6UlhuWEk9JmRlbW89dHJ1ZSZ3YXRlcm1hcms9ZmFsc2U=');"
-    > H.G.P.S.P</button
-  ><br /><br />
-  <button onClick="window.open('https://mesmanuels.fr/acces-libre/9782016289914');"
-  > H.L.P. </button
-  ><br /><br />
-  <button onClick="window.open('https://www.libmanuels.fr/demo/9791035813659/0?version=2&title=SES%20Tle%20-%20%C3%A9d.%202020&editor=Belin');"
-    > S.E.S. </button
-  ><br /><br />
-  <button onClick="window.open('https://www.libmanuels.fr/demo/9791035813772/0?version=2&title=SVT%20tle%20-%20%C3%A9d.%202020&editor=Belin');"
-    > S.V.T.</button
-  ><br /><br />
-  <button onClick="window.open('https://mesmanuels.fr/acces-libre/5588722');"> S.P.H.</button>
-  <br /><br />
-  <button onClick="window.open('https://www.rasmoutech.com/wp-content/uploads/2020/09/Livre-PHYSIQUE_TERMINALE_S.pdf');"
-    > Exercices SPH</button
-  >
-  <br /><br />
-  <button onClick="window.open('https://www.lelivrescolaire.fr/page/16683286');"> Mathématiques</a
-  >
-</p>
-  </details>
+    <svg
+      class="control-icon control-icon-close"
+      width="24"
+      height="24"
+      role="presentation"
+    >
+      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#close" />
+    </svg>
+  </summary>
+  <p>
+    <button
+      onclick="window.open('https://manuelnumeriquemax.belin.education/histoire-terminale/');"
+    >
+      Histoire</button
+    ><br /><br />
+    <button
+      onclick="window.open('https://manuelnumeriquemax.belin.education/geographie-terminale');"
+    >
+      Géographie</button
+    ><br /><br />
+    <button
+      onclick="window.open('https://www.libmanuels.fr/demo/9782210114531/specimen/304/?title=Philosophie%20Tle%20g%C3%A9n%C3%A9rale%20-%20Ed.%20Sorosina%20(Ed.%20num.%202022)&editor=Magnard');"
+    >
+      Philosophie</button
+    ><br /><br />
+    <button
+      onclick="window.open('https://www.editions-hatier.fr/flip/flex/97824010861350?token=e528b107cefadd373ef2293edf27302e&complet_present=1');"
+    >
+      Carnet de réussite Philospohie</button
+    ><br /><br />
+    <button onclick="window.open('https://mesmanuels.fr/acces-libre/5588107');">
+      Enseignement scientifique
+    </button>
+  </p>
+</details>
 
-  <details>
-    <summary>
-      Options<br>
-      <svg class="control-icon control-icon-expand" width="24" height="24" role="presentation"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#expand-more" /></svg>
-      <svg class="control-icon control-icon-close" width="24" height="24" role="presentation"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#close" /></svg>
-    </summary>
-    <p>
-    <button onClick="window.open('https://www.lelivrescolaire.fr/page/15117110');"
-> Maths expertes</button
-        ><br /><br />
-        <button onClick="window.open('https://fr.calameo.com/read/004956979ebd6a01f0c91');"
+<details>
+  <summary>
+    Langues<br />
+    <svg
+      class="control-icon control-icon-expand"
+      width="24"
+      height="24"
+      role="presentation"
+    >
+      <use
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        xlink:href="#expand-more"
+      />
+    </svg>
+    <svg
+      class="control-icon control-icon-close"
+      width="24"
+      height="24"
+      role="presentation"
+    >
+      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#close" />
+    </svg>
+  </summary>
+  <p>
+    <button
+      onclick="window.open('https://fr.calameo.com/read/0049569797f7bd6a2a9ff');"
+    >
+      Allemand</button
+    ><br /><br />
+    <button
+      onclick="window.open('https://www.editions-hatier.fr/flip/flex/97822780955751?token=4d52952b0dbcbd3c7225202f530893b8');"
+    >
+      Espagnol
+    </button>
+  </p>
+</details>
 
-          > Maths complémentaires</button
-        >
-    </p>
-  </details>
+<details>
+  <summary>
+    Spécialités<br />
+    <svg
+      class="control-icon control-icon-expand"
+      width="24"
+      height="24"
+      role="presentation"
+    >
+      <use
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        xlink:href="#expand-more"
+      />
+    </svg>
+    <svg
+      class="control-icon control-icon-close"
+      width="24"
+      height="24"
+      role="presentation"
+    >
+      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#close" />
+    </svg>
+  </summary>
+  <p>
+    <button
+      onclick="window.open('https://biblio.nathan.fr/specimen/9782091725338/?openBook=9782091725338%3fdXNlck5hbWU9bWtjK2J0SHR5akx6UWNGVjdGOFU2UWtqNytHRHZNTWp6N3ovUW9WenBqMD0mdXNlclBhc3N3b3JkPXpWYVMrNXl5Z2h4dTIzQjRDQXpLMzMvVjNnRFIwaGVvSko4bVZ6UlhuWEk9JmRlbW89dHJ1ZSZ3YXRlcm1hcms9ZmFsc2U=');"
+    >
+      H.G.P.S.P</button
+    ><br /><br />
+    <button
+      onclick="window.open('https://mesmanuels.fr/acces-libre/9782016289914');"
+    >
+      H.L.P.</button
+    ><br /><br />
+    <button
+      onclick="window.open('https://www.libmanuels.fr/demo/9791035813659/0?version=2&title=SES%20Tle%20-%20%C3%A9d.%202020&editor=Belin');"
+    >
+      S.E.S.</button
+    ><br /><br />
+    <button
+      onclick="window.open('https://www.libmanuels.fr/demo/9791035813772/0?version=2&title=SVT%20tle%20-%20%C3%A9d.%202020&editor=Belin');"
+    >
+      S.V.T.</button
+    ><br /><br />
+    <button onclick="window.open('https://mesmanuels.fr/acces-libre/5588722');">
+      S.P.H.
+    </button>
+    <br /><br />
+    <button
+      onclick="window.open('https://www.rasmoutech.com/wp-content/uploads/2020/09/Livre-PHYSIQUE_TERMINALE_S.pdf');"
+    >
+      Exercices SPH
+    </button>
+    <br /><br />
+    <button
+      onclick="window.open('https://www.lelivrescolaire.fr/page/16683286');"
+    >
+      Mathématiques
+    </button>
+  </p>
+</details>
+
+<details>
+  <summary>
+    Options<br />
+    <svg
+      class="control-icon control-icon-expand"
+      width="24"
+      height="24"
+      role="presentation"
+    >
+      <use
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        xlink:href="#expand-more"
+      />
+    </svg>
+    <svg
+      class="control-icon control-icon-close"
+      width="24"
+      height="24"
+      role="presentation"
+    >
+      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#close" />
+    </svg>
+  </summary>
+  <p>
+    <button
+      onClick="window.open('https://www.lelivrescolaire.fr/page/15117110');"
+    >
+      Maths expertes</button
+    ><br /><br />
+    <button
+      onClick="window.open('https://fr.calameo.com/read/004956979ebd6a01f0c91');"
+    >
+      Maths complémentaires
+    </button>
+  </p>
+</details>
 
 {% endblock %}
-

@@ -1,32 +1,52 @@
 {% extends 'popup.html' %} {% block content %}
 <div class="login-box">
-    <h2>Se connecter</h2>
-    {% if message %}
-    <p class="messages">{{ message }}</p>
-    {% endif %}
-    <form action="" method = "POST">
-      <div class="user-box">
-        <input type="email" name="email" required="">
-        <label>Email</label>
-      </div>
-      <div class="user-box">
-        <input type="password" name="password" required="">
-        <label>Mot de passe</label>
-      </div>
-      <div class="center">
-
-        <a href="#">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <input type = "submit" value = "Valider" />
-          </a>
-        </form>
+  <h2>Se connecter</h2>
+  {% if message %}
+  <p class="messages">{{ message }}</p>
+  {% endif %}
+  <form action="" method="POST">
+    <div class="user-box">
+      <input type="email" name="email" required="" class="inputs" onkeyup="deleteBadThing()" value="{{email}}"/>
+      <label class="hidden">Email</label>
+    </div>
+    <div class="user-box">
+      <input type="password" name="password" required="" id="passwordInput" class="inputs" onkeyup="deleteBadThing()"/>
+      <label class="hidden">Mot de passe</label>
+    </div>
+             <label class="container">
+           Afficher le mot de passe
+        <input onclick="showPsw()" type="checkbox"/>
+        <span class="checkmark"></span>
+      </label>
+        
+        <script>
+            function showPsw() {
+                var x = document.getElementById("passwordInput");
+                if (x.type === "password") {
+                    x.type = "text";
+                } else {
+                    x.type = "password";
+                }
+            }
+        </script>
     
-    <h3>Pas encore de compte? </h3>
-<a href = "{{url_for('register') }}" class="subscribe">S'inscrire ici</a>
-      </div>
-
+    <div class="center">
+      <a href="#">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <input type="submit" value="Valider" />
+      </a>
+      
+      <h3>Pas encore de compte?</h3>
+      <a href="{{url_for('register') }}" class="subscribe">S'inscrire ici</a>
+      <a href="mailto:gabrielmerville@gmail.com?
+                &subject=Modification de mot de passe
+                &body=Bonjour, je souhaite modifier mon mot de passe.
+                "
+       id="forgotPsw">Mot de passe oublié?</a>
+    </div>
+  </form>
 </div>
 {% endblock %}

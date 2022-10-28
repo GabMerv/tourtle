@@ -13,25 +13,96 @@
       rel="stylesheet"
       href="{{ url_for('static', filename= 'css/popup.css') }}"
     />
+    
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename= 'css/checkboxes.css') }}"
+    />
+
 
     <link
       rel="stylesheet"
       href="{{ url_for('static', filename= 'css/style.css') }}"
     />
 
-
-    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link
+      rel="shortcut icon"
+      href="{{ url_for('static', filename='favicon.ico') }}"
+    />
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
-    <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
+    <script
+      src="https://kit.fontawesome.com/yourcode.js"
+      crossorigin="anonymous"
+    ></script>
 
-    
     <title>Tourtle</title>
   </head>
-    <body>
+  <body>
     <div>{% block content %} {% endblock %}</div>
-
   </body>
+  <script src="{{url_for('static', filename='js/login.js')}}"></script>
 </html>
+
+<!-- 
+Bonjour à toi étranger, toi qui passe par là sache que les bicornes vont envahir le monde!! 
+Bon en vrai c'est pas très zentil de regarder le code source !! Je sais pas ce que tu veux tenter mais je te le déconseille!! passe ton chemin mon, petit!
+Enfin bref! passe une bonne journée sinon...
+
+signé:
+
+88888888ba  88                                                           
+88      "8b ""                                                           
+88      ,8P                                                              
+88aaaaaa8P' 88  ,adPPYba,  ,adPPYba,  8b,dPPYba, 8b,dPPYba,   ,adPPYba,  
+88""""""8b, 88 a8"     "" a8"     "8a 88P'   "Y8 88P'   `"8a a8P_____88  
+88      `8b 88 8b         8b       d8 88         88       88 8PP"""""""  
+88      a8P 88 "8a,   ,aa "8a,   ,a8" 88         88       88 "8b,   ,aa  
+88888888P"  88  `"Ybbd8"'  `"YbbdP"'  88         88       88  `"Ybbd8"'  
+                                                                         
+
+                                                  /
+                                                  .7
+                                       \       , //
+                                       |\.--._/|//
+                                      /\ ) ) ).'/
+                                     /(  \  // /
+                                    /(   J`((_/ \
+                                   / ) | _\     /
+                                  /|)  \  eJ    L
+                                 |  \ L \   L   L
+                                /  \  J  `. J   L
+                                |  )   L   \/   \
+                               /  \    J   (\   /
+             _....___         |  \      \   \```
+      ,.._.-'        '''--...-||\     -. \   \
+    .'.=.'                    `         `.\ [ Y
+   /   /                                  \]  J
+  Y / Y                                    Y   L
+  | | |          \                         |   L
+  | | |           Y                        A  J
+  |   I           |                       /I\ /
+  |    \          I             \        ( |]/|
+  J     \         /._           /        -tI/ |
+   L     )       /   /'-------'J           `'-:.
+   J   .'      ,'  ,' ,     \   `'-.__          \
+    \ T      ,'  ,'   )\    /|        ';'---7   /
+     \|    ,'L  Y...-' / _.' /         \   /   /
+      J   Y  |  J    .'-'   /         ,--.(   /
+       L  |  J   L -'     .'         /  |    /\
+       |  J.  L  J     .-;.-/       |    \ .' /
+       J   L`-J   L____,.-'`        |  _.-'   |
+        L  J   L  J                  ``  J    |
+        J   L  |   L                     J    |
+         L  J  L    \                    L    \
+         |   L  ) _.'\                    ) _.'\
+         L    \('`    \                  ('`    \
+          ) _.'\`-....'                   `-....'
+         ('`    \
+          `-.___/   
+
+
+
+-->

@@ -1,97 +1,105 @@
-{% extends 'base.html' %}
-
-{% block content %}
+{% extends 'base.html' %} {% block content %}
 
 <link
-rel="stylesheet"
-href="{{ url_for('static', filename= 'css/add_blog.css') }}"
+  rel="stylesheet"
+  href="{{ url_for('static', filename= 'css/add_blog.css') }}"
 />
-
 
 <div id="infoChart">
   <details>
-<summary style="list-style: none;">
-  Créer un article
-</summary>
-<form method = "POST" enctype = "multipart/form-data">
-  <p>Titre:</p>
-<input type= "title" name="title" required=""/><br><br>
-<p>Corps:</p>
-<textarea rows="5" cols="60" name="content" placeholder="Corps" required=""></textarea><br>
-<p>Fichiers:</p>
-<input type = "file" name = "file" multiple="" accept="image/png, image/jpg, image/jpeg, image/jfif"/>
-<br>
-<hr>
-{% for f in follow %}
- <label class="container">{{f.name}}
-            <input type="checkbox" name="{{f.name}}">
-            <span class="checkmark"></span>
-        </label>
-        <br>
-        {% endfor %}
-<hr>
-<br><br>
-<input type ="submit" value ="Envoyer" class="submit_btn"/>
-</form>
-
-<br />
-<br>
-  </details>
-    
+    <summary style="list-style: none">Créer un article</summary>
+    <form method="POST" enctype="multipart/form-data">
+      <p>Titre:</p>
+      <input type="title" name="title" required="" maxlength="50"/><br /><br />
+      <p>Corps:</p>
+      <textarea
+        rows="5"
+        cols="60"
+        name="content"
+        placeholder="Corps"
+        required=""
+      ></textarea
+      ><br />
+      <p>Fichiers:</p>
+      <input
+        type="file"
+        name="file"
+        multiple=""
+        accept="image/png, image/jpg, image/jpeg, image/jfif"
+      />
       <br />
-
-        
-        <hr>
-<details>
-  <summary style="list-style: none;">
-    Poster des photos
-  </summary>
-  
-      <form method = "POST" enctype = "multipart/form-data">
-
-     <input type = "file" name = "file" multiple="" accept="image/png, image/jpg, image/jpeg, image/jfif" required=""/>
-     <br><br>
-     <hr>
-     {% for f in follow %}
- <label class="container">{{f.name}}
-            <input type="checkbox" name="{{f.name}}">
-            <span class="checkmark"></span>
-        </label>
-        <br>
-        {% endfor %}   
-        <hr>
-     <br><br>
-     <input type ="submit" value ="Envoyer" class="submit_btn"/>
-
-
-  </form>
-</details>
-<br>
-<hr>
-<details>
-  <summary style="list-style: none;">
-    Poster une vidéo
-  </summary>
-  <form method = "POST" enctype = "multipart/form-data">
-  <input type="title" name="link"/>
-  <br><br>
-  <hr>
-  {% for f in follow %}
-<label class="container">{{f.name}}
-         <input type="checkbox" name="{{f.name}}">
-         <span class="checkmark"></span>
-     </label>
-     <br>
-     {% endfor %}   
-     <hr>
-  <br><br>
-  <input type ="submit" value ="Envoyer" class="submit_btn"/>
+      <hr />
+      {% for f in follow %}
+      <label class="container"
+        >{{f.name}}
+        <input type="checkbox" name="{{f.name}}" />
+        <span class="checkmark"></span>
+      </label>
+      <br />
+      {% endfor %}
+      <hr />
+      <br /><br />
+      <input type="submit" value="Envoyer" class="submit_btn" />
     </form>
-</details>
-<br>
-  </div>
 
+    <br />
+    <br />
+  </details>
 
+  <br />
 
+  <hr />
+  <details>
+    <summary style="list-style: none">Poster des photos</summary>
+
+    <form method="POST" enctype="multipart/form-data">
+      <input
+        type="file"
+        name="file"
+        multiple=""
+        accept="image/png, image/jpg, image/jpeg, image/jfif"
+        required=""
+      />
+      <br /><br />
+      <hr />
+      {% for f in follow %}
+      <label class="container"
+        >{{f.name}}
+        <input type="checkbox" name="{{f.name}}" />
+        <span class="checkmark"></span>
+      </label>
+      <br />
+      {% endfor %}
+      <hr />
+      <br /><br />
+      <input type="submit" value="Envoyer" class="submit_btn" />
+    </form>
+  </details>
+  <br />
+  <hr />
+  <details>
+    <summary style="list-style: none">Poster une vidéo</summary>
+    <form method="POST" enctype="multipart/form-data">
+      Veuillez entrer le lien d'une vidéo Youtube:<br>
+      <input type="title" name="link" />
+      <br>
+      <i>PS: vous ne pouvez pas poster des vidéos enregistrées sur votre téléphone</i>
+      <br /><br />
+      <hr />
+      {% for f in follow %}
+      <label class="container"
+        >{{f.name}}
+        <input type="checkbox" name="{{f.name}}" />
+        <span class="checkmark"></span>
+      </label>
+      <br />
+      {% endfor %}
+      <hr />
+      <br /><br />
+      <input type="submit" value="Envoyer" class="submit_btn" />
+    </form>
+  </details>
+  <br />
+</div>
 
 {% endblock %}

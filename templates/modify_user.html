@@ -1,94 +1,96 @@
 {% extends 'base.html' %} {% block content %}
 <link
-rel="stylesheet"
-href="{{ url_for('static', filename= 'css/user.css') }}"
+  rel="stylesheet"
+  href="{{ url_for('static', filename= 'css/user.css') }}"
 />
 
-
 <div id="infoChart">
-<form method = "POST" enctype = "multipart/form-data">
+  <form method="POST" enctype="multipart/form-data">
+    {% if user.pp %}
+    <img src="/{{user.pp}}" alt="Avatar" class="avatar" />
+    {% endif %} {% if not user.pp %}
+    <img
+      src="{{ url_for('static', filename='icons/noUser.png') }}"
+      alt="Avatar"
+      class="avatar"
+    />
+    {% endif %}
+    <br />
+    Modifier la photo de profil:<br />
+    <input
+      type="file"
+      name="file"
+      accept="image/png, image/jpg, image/jpeg, image/jfif"
+    />
+    <br />
+    Nom d'utilisateur:<br />
+    <input name="username" type="text" value="{{user.username}}" />
+    <hr />
 
-{% if user.pp %}
-<img src="/{{user.pp}}" alt="Avatar" class="avatar">
-{% endif %}
-{% if not user.pp %}
-<img src="{{ url_for('static', filename='icons/noUser.png') }}" alt="Avatar" class="avatar">
-{% endif %}
-<br>
-Modifier la photo de profil:<br>
-<input type = "file" name = "file" accept="image/png, image/jpg, image/jpeg, image/jfif"/>
-<br>
-Nom d'utilisateur:<br>
-<input name="username" type="text" value="{{user.username}}">
-<hr>
+    <br />
+    Spécialités:<br />
+    <input name="spes" type="text" value="{{user.spes}}" />
+    <br />
 
+    Email:<br />
+    <input name="email" type="text" value="{{user.email}}" />
+    <br />
 
+    Description: <br />
+    <textarea rows="5" cols="60" name="description" placeholder="Description">
+{{user.description}}</textarea
+    >
+    <br />
 
-<br>
-Spécialités:<br>
-<input name="spes" type="text" value="{{user.spes}}">
-<br>
+    Classe: <br />
+    <input name="classe" type="text" value="{{user.classe}}" />
+    <br />
 
-Email:<br>
-<input name="email" type="text" value="{{user.email}}">
-<br>
+    Parcours: <br />
+    <textarea rows="5" cols="60" name="parcours" placeholder="Parcours">
+{{user.parcours}}</textarea
+    >
+    <br />
 
+    Quelques infos en vrac:<br />
+    <textarea rows="5" cols="60" name="q_a" placeholder="Q & A">
+{{user.q_a}}</textarea
+    >
+    <br />
 
-
-Description: <br>
-<textarea rows="5" cols="60" name="description" placeholder="Description">{{user.description}}</textarea>
-<br>
-
-
-
-Classe: <br>
-<input name="classe" type="text" value="{{user.classe}}">
-<br>
-
-
-Parcours: <br>
-<textarea rows="5" cols="60" name="parcours" placeholder="Parcours">{{user.parcours}}</textarea>
-<br>
-
-
-
-Quelques infos en vrac:<br>
-<textarea rows="5" cols="60" name="q_a" placeholder="Q & A">{{user.q_a}}</textarea>
-<br>
-
-<hr>
-<br>
-{% for f in follow %}
-{% if f.name in user.follow.split(' ') %}
-<label class="container">{{f.name}}
-    <input type="checkbox" name="{{f.name}}" checked>
-    <span class="checkmark"></span>
-</label>
-{% endif %}
-{% if f.name not in user.follow.split(' ') %}
-<label class="container">{{f.name}}
-    <input type="checkbox" name="{{f.name}}">
-    <span class="checkmark"></span>
-</label>
-{% endif %}
-<br>
-{% endfor %}
-<hr>
-<br>
-Mot de passe (modification):<br>
-<input name="password" type="text" value="{{user.password}}">
-<br>
-<hr>
-<input onclick="return confirm('Confirmer les modifications?')" class="submit_btn" type ="submit" value = "Valider" />
-<br>
-
-
-</form>
+    <hr />
+    <br />
+    {% for f in follow %} {% if f.name in user.follow.split(' ') %}
+    <label class="container"
+      >{{f.name}}
+      <input type="checkbox" name="{{f.name}}" checked />
+      <span class="checkmark"></span>
+    </label>
+    {% endif %} {% if f.name not in user.follow.split(' ') %}
+    <label class="container"
+      >{{f.name}}
+      <input type="checkbox" name="{{f.name}}" />
+      <span class="checkmark"></span>
+    </label>
+    {% endif %}
+    <br />
+    {% endfor %}
+    <hr />
+    <br />
+    Mot de passe (modification):<br />
+    <input name="password" type="text" value="{{user.password}}" />
+    <br />
+    <hr />
+    <input
+      onclick="return confirm('Confirmer les modifications?')"
+      class="submit_btn"
+      type="submit"
+      value="Valider"
+    />
+    <br />
+  </form>
 </div>
 
-
-<br>
-
-
+<br />
 
 {% endblock %}

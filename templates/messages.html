@@ -22,36 +22,46 @@ name="search" placeholder="Lancer une conversation..">
     </ul>
 </div>
 
-{% set i = -1 %}
+{% set ns = namespace(i=-1) %}
 {% for conversation in conversations %}
-{% set i = i+1 %}
+{% set ns.i = ns.i+1 %}
 
 {% if conversation.author_id != current_user.id %}
 <a href="/{{conversation.author_id}}/send">
 {% endif %}
+
 {% if conversation.receiver_id != current_user.id %}
 <a href="/{{conversation.receiver_id}}/send">
 {% endif %}
-<div class="conversation">
-{% if users[i] == "" %}
+
+{% if conversation.read or conversation.author_id == current_user.id %}
+<div class="conversation-read">
+{% endif %}
+
+{% if conversation.read == False and conversation.author_id != current_user.id %}
+<div class="conversation-unread">
+{% endif %}
+
+{% if users[ns.i] == "" %}
 <img src="{{ url_for('static', filename='icons/noUser.png') }}" alt="Avatar" class="avatar">
 {% endif %}
-{% if users[i] != "" %}
-<img src="/{{users[i]}}" alt="Avatar" class="avatar">
+
+{% if users[ns.i] != "" %}
+<img src="/{{users[ns.i]}}" alt="Avatar" class="avatar">
 {% endif %}
+
 {% if conversation.author_id != current_user.id %}
 <div>
     {{conversation.author_name}}
 </div>
-
-
 {% endif %}
+
 {% if conversation.receiver_id != current_user.id %}
 <div>
     {{conversation.receiver_name}}
 </div>
-
 {% endif %}
+
 </div>
 </a>
 

@@ -14,10 +14,10 @@ href="{{ url_for('static', filename= 'css/dst.css') }}"
           {% set images = post['images'].split(' ') %}
           {% for image in images %}
           {% if image[-3:] == "jpg" or image[-3:] == "png" or image[-3:] == "jfif" or image[-4:] == "jpeg" %}
-          <img class="dst_image" src={{ image }}><br><br>
+          <img class="dst_image" src="{{ image }}" loading="lazy"><br><br>
           {% endif %}
 
-          {% if image[-4:] == "docx" or image[-3:] == "doc" %}
+          {% if image[-4:] == "docx" or image[-3:] == "doc" or image[-4:] == "pptx" or image[-3:] == "odt" or image[-3:] == 'xls' %}
           <p>{{image[14:]}}</p>
           {% endif %}
 

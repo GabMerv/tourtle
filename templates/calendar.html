@@ -5,6 +5,140 @@ rel="stylesheet"
 href="{{ url_for('static', filename= 'css/calendar.css') }}"
 />
 
+<link
+rel="stylesheet"
+href="{{ url_for('static', filename= 'css/all_events.css') }}"
+/>
+
+
+<div class="container">
+    <div class="calendar">
+      <div class="front">
+        <div class="current-date">
+          <h1>{{day}}</h1>
+        </div>
+        <hr>
+
+        <div class="current-month">
+          <div class="weeks">
+            <div class ="days">
+                <span class="week-days">LU</span>
+                <span class="week-days">MA</span>
+                <span class="week-days">ME</span>
+                <span class="week-days">JE</span>
+                <span class="week-days">VE</span>
+                <span class="week-days">SA</span>
+                <span class="week-days">DI</span>
+
+            </div>
+            <div class="first">
+          {% for i in range(7) %}
+            {% if month[i].day|int >= 20 %}
+            <span class="last-month">{{month[i].day}}</span>
+            {% endif %}
+            {% if not month[i].day|int >= 20 %}
+            
+            {%if month[i].event != "" %}
+                <a href="#{{month[i].event}}-event"><span class="active">{{month[i].day}}</span></a>
+            
+            {%endif%}
+            
+            {%if month[i].event == "" %}
+            <span>{{month[i].day}}</span>
+            {%endif%}
+
+            {% endif %}
+                
+          {% endfor %}
+        </div>
+          
+        <div class="second">
+            {% for i in range(7) %}
+            {%if month[i+7].event != "" %}
+            <a href="#{{month[i+7].event}}-event"><span class="active">{{month[i+7].day}}</span></a>
+        {%endif%}
+        
+        {%if month[i+7].event == "" %}
+        <span>{{month[i+7].day}}</span>
+        {%endif%}
+            {% endfor %}
+          </div>
+
+           <div class="third">
+          {% for i in range(7) %}
+          {%if month[i+14].event != "" %}
+          <a href="#{{month[i+14].event}}-event"><span class="active">{{month[i+14].day}}</span></a>
+      {%endif%}
+      
+      {%if month[i+14].event == "" %}
+      <span>{{month[i+14].day}}</span>
+      {%endif%}
+          {% endfor %}
+        </div>
+
+            <div class="fourth">
+          {% for i in range(7) %}
+          {%if month[i+21].event != "" %}
+          <a href="#{{month[i+21].event}}-event"><span class="active">{{month[i+21].day}}</span></a>
+      {%endif%}
+      
+      {%if month[i+21].event == "" %}
+      <span>{{month[i+21].day}}</span>
+      {%endif%}
+          {% endfor %}
+        </div>
+
+           <div class="fifth">
+          {% for i in range(7) %}
+
+
+           {% if month[i+28].lastMonth == True %}
+            <span class="last-month">{{month[i+28].day}}</span>
+            {%endif%}
+
+            {% if month[i+28].lastMonth == False %}
+
+            {%if month[i+28].event != "" %}
+            <a href="#{{month[i+28].event}}-event"><span class="active">{{month[i+28].day}}</span></a>
+            {%endif%}
+        
+            {%if month[i+28].event == "" %}
+            <span>{{month[i+28].day}}</span>
+            {%endif%}
+            {%endif%}
+
+
+          {% endfor %}
+        </div>
+        <div class="sixth">
+            {% for i in range(7) %}
+
+            {% if month[i+35].lastMonth == True %}
+            <span class="last-month">{{month[i+35].day}}</span>
+            {%endif%}
+
+            {% if month[i+35].lastMonth == False %}
+
+            {%if month[i+35].event != "" %}
+            <a href="#{{month[i+35].event}}-event"><span class="active">{{month[i+35].day}}</span></a>
+            {%endif%}
+        
+            {%if month[i+35].event == "" %}
+            <span>{{month[i+35].day}}</span>
+            {%endif%}
+            {%endif%}
+
+
+            {% endfor %}
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<hr>
 {% set ns2 = namespace(i=-1) %}
 {% for post in posts %}
 {% set ns2.i = ns2.i+1 %}
@@ -29,7 +163,7 @@ href="{{ url_for('static', filename= 'css/calendar.css') }}"
     <details class="followed" id="{{post.id}}-event">
 {% endif %}
         <summary>
-            {{post.title}}: {{post.dates}}
+            {{post.title}} : {{post.dates}}
         </summary>
         <p class="little">{{post.types}}</p>
         <hr>
@@ -88,4 +222,5 @@ Inscrits:
 
 
 <script src="static/js/openEvent.js"></script>
+
 {% endblock %}

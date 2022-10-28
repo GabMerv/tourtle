@@ -1,37 +1,61 @@
 {% extends 'popup.html' %} {% block content %}
 
 <div class="login-box">
-    <h2>S'inscrire</h2>
-    {% if message %}
-    <p class="messages">{{ message }}</p>
-    {% endif %}
-    <form action="" method = "POST">
-      <div class="user-box">
-        <input type="email" name="email" required="">
-        <label>Email</label>
-      </div>
-      <div class="user-box">
-        <input type="text" name="username" required="">
-        <label>Nom d'utilisateur</label>
-      </div>
-      <div class="user-box">
-        <input type="password" name="password" required="">
-        <label>Mot de passe</label>
-      </div>
-      <div class="center">
+  <h2>S'inscrire</h2>
+  {% if message %}
+  <p class="messages">{{ message }}</p>
+  {% endif %}
+  <form action="" method="POST">
+    <div class="user-box">
+      <input type="email" name="email" required="" class="inputs" onkeyup="deleteBadThing()" value="{{email}}"/>
+      <label class="hidden">Email</label>
+    </div>
+    <div class="user-box">
+      <input type="text" name="username" required="" class="inputs" onkeyup="deleteBadThing()"/>
+      <label class="hidden">Nom d'utilisateur</label>
+    </div>
+    <div class="user-box">
+      <input type="password" name="password" required="" id="passwordInput" class="inputs" onkeyup="deleteBadThing()"/>
+      <label class="hidden">Mot de passe</label>
+    </div>
+    <div class="user-box">
+      <input type="password" name="password2" required="" id="passwordInput2" class="inputs" onkeyup="deleteBadThing()"/>
+      <label class="hidden">Confirmation du mot de passe</label>
+    </div>
+                 <label class="container">
+           Afficher le mot de passe
+        <input onclick="showPsw()" type="checkbox" />
+        <span class="checkmark"></span>
+      </label>
+        
+        <script>
+            function showPsw() {
+                var x = document.getElementById("passwordInput");
+                if (x.type === "password") {
+                    x.type = "text";
+                } else {
+                    x.type = "password";
+                }
+              var y = document.getElementById("passwordInput2");
+                if (y.type === "password") {
+                    y.type = "text";
+                } else {
+                    y.type = "password";
+                }
+            }
+        </script>
+    <div class="center">
+      <a href="#">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <input type="submit" value="Valider" />
+      </a>
 
-        <a href="#">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <input type = "submit" value = "Valider" />
-          </a>
-        </form>
-    
-    <h3>Vous avez déjà un compte? </h3>
-<a href = "{{url_for('login') }}" class="subscribe">Se connecter</a>
-      </div>
-
+      <h3>Vous avez déjà un compte?</h3>
+      <a href="{{url_for('login') }}" class="subscribe">Se connecter</a>
+    </div>
+  </form>
 </div>
 {% endblock %}
