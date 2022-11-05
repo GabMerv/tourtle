@@ -3,7 +3,22 @@
   rel="stylesheet"
   href="{{ url_for('static', filename= 'css/user.css') }}"
 />
+{% if user == "NOPE" %}
+<div id="infoChart">
 
+  <img
+    src="{{ url_for('static', filename='icons/noUser.png') }}"
+    alt="Avatar"
+    class="avatar"
+  />
+  <br>
+  Utilisateur inconnu
+  <hr>
+</div>
+
+{% endif %}
+
+{% if user != "NOPE" %}
 <div id="infoChart">
   {% if user.pp %}
   <img src="/{{user.pp}}" alt="Avatar" class="avatar" />
@@ -63,4 +78,5 @@
 <div class="send_button">
   <a href="{{ url_for('send', id=user.id) }}">Envoyer un message</a>
 </div>
+{% endif %}
 {% endif %} {% endblock %}

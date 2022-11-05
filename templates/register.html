@@ -7,7 +7,7 @@
   {% endif %}
   <form action="" method="POST">
     <div class="user-box">
-      <input type="email" name="email" required="" class="inputs" onkeyup="deleteBadThing()" value="{{email}}"/>
+      <input type="email" name="email" required="" class="inputs" onkeyup="deleteBadThing()" value="{{email}}" id="emailInput"/>
       <label class="hidden">Email</label>
     </div>
     <div class="user-box">
@@ -45,6 +45,10 @@
             }
         </script>
     <div class="center">
+      <br>
+      <p>
+        En m'inscrivant, je m'engage à respecter les <button onclick="window.location ='/conditions'" type="button">conditions d'utilisation</button>
+      </p>
       <a href="#">
         <span></span>
         <span></span>

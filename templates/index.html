@@ -51,7 +51,12 @@ href="{{ url_for('static', filename= 'css/modal.css') }}"
 
 <p class="little">
 {%for line in post.content.split('\n')%}
+{% if line.startswith("http") or line.startswith("www") %}
+  <a href="{{line}}" target="_blank"><u style="color: red">Lien</u></a>
+{% endif %}
+{% if line.startswith("http") == False and line.startswith("www") == False%}
 {{line}}
+  {% endif %}
 <br>
 {% endfor %}
 </p>

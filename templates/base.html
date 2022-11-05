@@ -52,12 +52,13 @@
           ><img src="{{ url_for('static', filename='icons/house.svg') }}"
         /></a>
         <a href="/messages">
-        {% if unread %}
-        <img src="{{ url_for('static', filename='icons/unreadMessage.svg') }}"/>
-        {% endif %}
-        {% if not unread %}
-          <img src="{{ url_for('static', filename='icons/messages.svg') }}"/>
-        {% endif %}
+          {% if unread %}
+          <img
+            src="{{ url_for('static', filename='icons/unreadMessage.svg') }}"
+          />
+          {% endif %} {% if not unread %}
+          <img src="{{ url_for('static', filename='icons/messages.svg') }}" />
+          {% endif %}
         </a>
         <a href="/"
           ><img
@@ -82,7 +83,7 @@
         <a href="/dst"
           ><img src="{{ url_for('static', filename='icons/test.png') }}"
         /></a>
-        <a href="/calendar"
+        <a href="/0/calendar"
           ><img src="{{ url_for('static', filename='icons/calendar.png') }}"
         /></a>
         <a href="/livres"

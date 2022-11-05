@@ -21,6 +21,19 @@ def get_db_connection():
     conn.row_factory = sqlite3.Row
     return conn
 
+def magic(text):
+  text2 = text.split(" ")
+  for i, el in enumerate(text2):
+    if el.startswith("http") == False:
+      if len(el) >= 34:
+        el = el[0:int(len(el)/4)] + " " + el[int(len(el)/4):int(len(el)/2)] + el[int(len(el)/2):3*int(len(el)/4)]  + el[int(len(el)/4):-1]
+        text2[i] = el
+      if len(el) >= 17:
+        el = el[0:int(len(el)/2)] + " " + el[int(len(el)/2):-1]
+        text2[i] = el
+  text = ' '.join(text2)
+  return text
+
 app = Flask(__name__)
 app.secret_key = "Tourtle4Ever"
 
@@ -121,9 +134,11 @@ def delete_user(id):
 @login_required
 def admin():
     unread = False
+    messages = []
     if current_user.messages.split(" ")[0]:
         messages = [get_message(id) for id in current_user.messages.split(" ")]
     for message in messages:
+      if message:
         if message[3] == current_user.id and message[8] == False:
             unread = True
             break
@@ -137,9 +152,11 @@ def admin():
 @login_required
 def index():
     unread = False
+    messages = []
     if current_user.messages.split(" ")[0]:
         messages = [get_message(id) for id in current_user.messages.split(" ")]
     for message in messages:
+      if message:
         if message[3] == current_user.id and message[8] == False:
             unread = True
             break
@@ -152,9 +169,11 @@ def index():
 @login_required
 def search():
     unread = False
+    messages = []
     if current_user.messages.split(" ")[0]:
         messages = [get_message(id) for id in current_user.messages.split(" ")]
     for message in messages:
+      if message:
         if message[3] == current_user.id and message[8] == False:
             unread = True
             break
@@ -167,13 +186,19 @@ def search():
     conn.close()
     return render_template('search.html', users=users, blogs=blogs, events=events, dsts=dsts, follow=follow, unread=unread)
 
+@app.route('/conditions', methods=('GET', 'POST'))
+def conditions():
+  return render_template('conditions.html')
+  
 @app.route('/livres', methods=('GET', 'POST'))
 @login_required
 def livres():
     unread = False
+    messages = []
     if current_user.messages.split(" ")[0]:
         messages = [get_message(id) for id in current_user.messages.split(" ")]
     for message in messages:
+      if message:
         if message[3] == current_user.id and message[8] == False:
             unread = True
             break
@@ -183,22 +208,30 @@ def livres():
 @login_required
 def userInfos(id):
     unread = False
+    messages = []
     if current_user.messages.split(" ")[0]:
         messages = [get_message(id) for id in current_user.messages.split(" ")]
     for message in messages:
+      if message:
         if message[3] == current_user.id and message[8] == False:
             unread = True
             break
     user = load_user(id)
+    try:
+      user.pp
+    except:
+      return render_template('userInfos.html', user="NOPE", unread=unread)
     return render_template('userInfos.html', user=user, unread=unread)
 
 @app.route('/<int:id>/modify_user', methods=('GET', 'POST'))
 @login_required
 def modifyUser(id):
     unread = False
+    messages = []
     if current_user.messages.split(" ")[0]:
         messages = [get_message(id) for id in current_user.messages.split(" ")]
     for message in messages:
+      if message:
         if message[3] == current_user.id and message[8] == False:
             unread = True
             break
@@ -217,6 +250,11 @@ def modifyUser(id):
         q_a = request.form['q_a']
         files = request.files.getlist('file')
         images = []
+        spes = magic(spes)
+        description = magic(description)
+        classe = magic(classe)
+        parcours = magic(parcours)
+        q_a = magic(q_a)
         for f in files:
             try:
                 path = "static/images/" + secure_filename(f.filename)
@@ -255,9 +293,11 @@ def modifyUser(id):
 @login_required
 def dst():
     unread = False
+    messages = []
     if current_user.messages.split(" ")[0]:
         messages = [get_message(id) for id in current_user.messages.split(" ")]
     for message in messages:
+      if message:
         if message[3] == current_user.id and message[8] == False:
             unread = True
             break
@@ -266,25 +306,46 @@ def dst():
     conn.close()
     return render_template('dst.html', posts=posts[::-1], unread=unread)
 
-@app.route('/calendar', methods=('GET', 'POST'))
+@app.route('/<int:id_month>/calendar', methods=('GET', 'POST'))
 @login_required
-def calendar():
+def calendar(id_month):
     unread = False
+    messages = []
     if current_user.messages.split(" ")[0]:
         messages = [get_message(id) for id in current_user.messages.split(" ")]
     for message in messages:
+      if message:
         if message[3] == current_user.id and message[8] == False:
             unread = True
             break
     conn = get_db_connection()
     posts = conn.execute('SELECT * FROM calendar').fetchall()
     conn.close()
+    
     suscribers = []
+    
     current_dateTime = datetime.now()
+    year = current_dateTime.year
+    id_month_2 = id_month + current_dateTime.month
+    while id_month_2 - 12 > 0:
+      year += 1
+      id_month_2 -= 12
+      
+    month_ = (current_dateTime.month + id_month)%12
+    if month_ == 0:
+      month_ = 12
+    current_dateTime = current_dateTime.replace(day = 1, month=month_, year=year)
+    
     allDays = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"]
     allMonts = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Aout", "Septembre", "Octobre", "Novembre", "Décembre"]
+    
     weekday = allDays[current_dateTime.weekday()]
-    day = "{} {} {} {}".format(weekday, current_dateTime.day, allMonts[current_dateTime.month], current_dateTime.year)
+    
+    if id_month%12 == 0:
+      day = "{} {} {} {}".format(weekday, datetime.now().day, allMonts[current_dateTime.month-1], current_dateTime.year)
+    else:
+      day = "{} {}".format(allMonts[current_dateTime.month-1], current_dateTime.year)
+    
     month_len = numberOfDays(current_dateTime.year, current_dateTime.month)
     first_day = current_dateTime.replace(day=1)
     first_week_day = first_day.weekday()
@@ -294,7 +355,13 @@ def calendar():
         month.append({"day": str(last_month_day_number-i), "lastMonth":True, "events":''})
     month = month[::-1]
 
-    today = datetime.today().date()
+    today = datetime.now()
+    month_ = (today.month+id_month)%12
+    if month_ == 0:
+      month_ = 12
+    today = today.replace(day=1, month=month_, year=year)
+    today = today.date()
+    
     for i in range(1, month_len+1):
         events = ""
         date = today.replace(day=i)
@@ -307,22 +374,33 @@ def calendar():
 
     i = 1
     while len(month) < 7*6:
-        month.append({"day": str(i), "lastMonth":True, "event":""})
+        j = i
+        if len(str(j)) == 1:
+            j = str("0{}".format(j))
+        month.append({"day": str(j), "lastMonth":True, "event":""})
         i += 1
         
     for p in posts:
         p = list(p)
-        u = [load_user(int(i)).username for i in p[6].split(' ') if i.isdigit()]
+        u = []
+        for i in p[6].split(" "):
+          if i.isdigit():
+            try:
+              u.append(load_user(int(i)))
+            except:
+              pass
         suscribers.append(u)
-    return render_template('calendar.html', posts=posts[::-1], suscribers=suscribers[::-1], day=day, date=current_dateTime, month_len=month_len, month=month, unread=unread)
+    return render_template('calendar.html', posts=posts[::-1], suscribers=suscribers[::-1], day=day, date=current_dateTime, month_len=month_len, month=month, unread=unread, id_month=id_month)
 
 @app.route('/add_event', methods=('GET', 'POST'))
 @login_required
 def add_event():
     unread = False
+    messages = []
     if current_user.messages.split(" ")[0]:
         messages = [get_message(id) for id in current_user.messages.split(" ")]
     for message in messages:
+      if message:
         if message[3] == current_user.id and message[8] == False:
             unread = True
             break
@@ -343,22 +421,14 @@ def add_event():
             except:
                 pass
         types = ' '.join(fo)
-        title2 = title.split(" ")
-        for i, el in enumerate(title2):
-            if len(el) >= 34:
-                el = el[0:int(len(el)/4)] + " " + el[int(len(el)/4):int(len(el)/2)] + el[int(len(el)/2):3*int(len(el)/4)]  + el[int(len(el)/4):-1]
-                title2[i] = el
-            if len(el) >= 17:
-                el = el[0:int(len(el)/2)] + " " + el[int(len(el)/2):-1]
-                title2[i] = el
-        title = ' '.join(title2)
+        title = magic(title)
         conn = get_db_connection()
         conn.execute('INSERT INTO calendar (title, dates, description_, types, creator_id, creator_name, participants) VALUES (?, ?, ?, ?, ?, ?, ?)',
                      (title, dates, description, types, creator_id, current_user.username, ""))
         conn.commit()
         conn.close()
 
-        return redirect(url_for('calendar'))
+        return redirect(url_for('calendar', id_month=0))
     return render_template('add_event.html', follow=follow, unread=unread)
 
 @app.route('/<int:id>/suscribe', methods=('GET', 'POST'))
@@ -372,7 +442,7 @@ def suscribe(id):
     conn.execute('UPDATE calendar SET participants = ? WHERE id = ?', (part, id,))
     conn.commit()
     conn.close()
-    return redirect(url_for('calendar'))
+    return redirect(url_for('calendar', id_month=0))
 
 @app.route('/<int:id>/unsuscribe', methods=('GET', 'POST'))
 @login_required
@@ -385,7 +455,7 @@ def unsuscribe(id):
     conn.execute('UPDATE calendar SET participants = ? WHERE id = ?', (part, id,))
     conn.commit()
     conn.close()
-    return redirect(url_for('calendar'))
+    return redirect(url_for('calendar', id_month=0))
 
 @app.route('/<int:id>/delete_event', methods=('GET', 'POST'))
 @login_required
@@ -394,15 +464,17 @@ def delete_event(id):
     conn.execute('DELETE FROM calendar WHERE id = ?', (id,))
     conn.commit()
     conn.close()
-    return redirect(url_for('calendar'))
+    return redirect(url_for('calendar', id_month=0))
 
 @app.route('/add_dst', methods=('GET', 'POST'))
 @login_required
 def add():
     unread = False
+    messages = []
     if current_user.messages.split(" ")[0]:
         messages = [get_message(id) for id in current_user.messages.split(" ")]
     for message in messages:
+      if message:
         if message[3] == current_user.id and message[8] == False:
             unread = True
             break
@@ -419,15 +491,7 @@ def add():
             f.save(path)
             images.append(path)
         images = ' '.join(images)
-        title2 = title.split(" ")
-        for i, el in enumerate(title2):
-            if len(el) >= 34:
-                el = el[0:int(len(el)/4)] + " " + el[int(len(el)/4):int(len(el)/2)] + el[int(len(el)/2):3*int(len(el)/4)]  + el[int(len(el)/4):-1]
-                title2[i] = el
-            if len(el) >= 17:
-                el = el[0:int(len(el)/2)] + " - " + el[int(len(el)/2):-1]
-                title2[i] = el
-        title = ' '.join(title2)
+        title = magic(title)
         conn = get_db_connection()
         conn.execute('INSERT INTO dst (title, images) VALUES (?, ?)',
                      (title, images))
@@ -454,9 +518,11 @@ def delete(id):
 @login_required
 def write_blog():
     unread = False
+    messages = []
     if current_user.messages.split(" ")[0]:
         messages = [get_message(id) for id in current_user.messages.split(" ")]
     for message in messages:
+      if message:
         if message[3] == current_user.id and message[8] == False:
             unread = True
             break
@@ -497,15 +563,7 @@ def write_blog():
             post_type = "VIDEO"
         conn = get_db_connection()
         if post_type == "ARTICLE":
-            title2 = title.split(" ")
-            for i, el in enumerate(title2):
-                if len(el) >= 34:
-                    el = el[0:int(len(el)/4)] + " " + el[int(len(el)/4):int(len(el)/2)] + el[int(len(el)/2):3*int(len(el)/4)]  + el[int(len(el)/4):-1]
-                    title2[i] = el
-                if len(el) >= 17:
-                  el = el[0:int(len(el)/2)] + " - " + el[int(len(el)/2):-1]
-                  title2[i] = el
-            title = ' '.join(title2)
+            title = magic(title)
             conn.execute('INSERT INTO blog (title, content, images, author_id, author_name, types, link) VALUES (?, ?, ?, ?, ?, ?, ?)',
                          (title, content, images, current_user.id, current_user.username, types, ""))
         elif post_type == "IMAGE":
@@ -555,9 +613,11 @@ def delete_blog(id):
 @login_required
 def messages():
     unread = False
+    messages = []
     if current_user.messages.split(" ")[0]:
         messages = [get_message(id) for id in current_user.messages.split(" ")]
     for message in messages:
+      if message:
         if message[3] == current_user.id and message[8] == False:
             unread = True
             break
@@ -572,11 +632,21 @@ def messages():
     for message in messages[::-1]:
       if message != None:
         if message[2] not in ids:
+          try:
             users.append(load_user(message[2]).pp)
             ids.append(message[2])
             conversations.append(message)
+          except:
+            users.append("")
+            ids.append(message[2])
+            conversations.append(message)
         if message[3] not in ids:
+          try:
             users.append(load_user(message[3]).pp)
+            ids.append(message[3])
+            conversations.append(message)
+          except:
+            users.append("")
             ids.append(message[3])
             conversations.append(message)
     return render_template('messages.html', conversations=conversations, users=users, utilisateurs=utilisateurs, unread=unread)
@@ -585,7 +655,12 @@ def messages():
 @login_required
 def send(id):
     messages = []
-    receiver = UserModel.query.filter_by(id=id).first()
+    receiver =load_user(id)
+    try:
+      receiver.pp
+    except:
+      receiver = {"pp":"", "username":"Compte supprimé"}
+      
     if current_user.messages.split(" ")[0]:
         for id_ in current_user.messages.split(" "):
             message = get_message(id_)
@@ -602,8 +677,13 @@ def send(id):
         content = request.form['content']
         author_id = current_user.id
         receiver_id = id
+        try:
+          load_user(receiver_id).pp
+        except:
+          return redirect(url_for("send", id=receiver_id))
         receiver_name = receiver.username
         author_name = current_user.username
+        content = magic(content)
         
         files = request.files.getlist('file')
         images = []
